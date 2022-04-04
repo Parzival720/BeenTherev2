@@ -99,7 +99,7 @@
                       android:layout_marginBottom="10dp"
                       android:layout_marginTop="3dp"
 
-                      android:id="@+id/create_journal_startdate"/>
+                      android:id="@+id/create_journal_start_date"/>
 
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
             <EditText android:layout_width="139dp"
                       android:layout_height="wrap_content"
                       android:hint="@string/end_date_placeholder"
-                      android:textColorHint="#@color/hint_color"
+                      android:textColorHint="@color/hint_color"
                       android:textColor="@color/black"
                       android:background="@drawable/rounded_edittext"
                       android:padding="6dp"
@@ -118,7 +118,7 @@
                       android:layout_marginBottom="10dp"
                       android:layout_marginTop="3dp"
 
-                      android:id="@+id/create_journal_enddate"/>
+                      android:id="@+id/create_journal_end_date"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -132,7 +132,7 @@
     <EditText android:layout_width="match_parent"
               android:layout_height="120dp"
               android:hint="@string/description_placeholder"
-              android:textColorHint="#@color/hint_color"
+              android:textColorHint="@color/hint_color"
               android:textColor="@color/black"
               android:background="@drawable/rounded_edittext"
               android:gravity="top"
