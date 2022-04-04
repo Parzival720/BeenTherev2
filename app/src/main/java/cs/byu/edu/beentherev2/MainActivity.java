@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerToggle();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new ConnectFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
 
         mDrawerList.setItemChecked(0, true);
         mDrawerList.setSelection(0);
@@ -73,9 +73,10 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment fragment = null;
 
+        // drop down menu items
         switch (position) {
             case 0:
-                fragment = new ConnectFragment();
+                fragment = new HomeFragment();
                 break;
             case 1:
                 fragment = new ItemFragment();
