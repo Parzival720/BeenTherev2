@@ -1,14 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".JournalCreationFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="350dp"
+              android:layout_height="550dp"
+              android:background="@drawable/creation_fragment"
+              android:orientation="vertical"
+              tools:context=".EventCreationFragment"
+              android:layout_gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/title"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"/>
 
-</FrameLayout>
+    <EditText android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/title_placeholder"
+              android:textColorHint="@color/hint_color"
+              android:textColor="@color/black"
+              android:background="@drawable/rounded_edittext"
+              android:padding="6dp"
+              android:layout_marginLeft="20dp"
+              android:layout_marginRight="20dp"
+              android:layout_marginBottom="10dp"
+              android:layout_marginTop="3dp"
+
+              android:id="@+id/create_journal_title"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/location"
+            android:layout_marginLeft="20dp"/>
+
+    <EditText android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/location_placeholder"
+              android:textColorHint="@color/hint_color"
+              android:textColor="@color/theme_blue"
+              android:background="@drawable/rounded_edittext"
+              android:padding="6dp"
+              android:layout_marginLeft="20dp"
+              android:layout_marginRight="20dp"
+              android:layout_marginBottom="10dp"
+              android:layout_marginTop="3dp"
+
+              android:id="@+id/create_journal_location"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/photos"
+            android:layout_marginLeft="20dp"/>
+
+    <EditText android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:hint="@string/select_photos"
+              android:textColorHint="@color/hint_color"
+              android:textColor="@color/black"
+              android:background="@drawable/rounded_edittext"
+              android:padding="6dp"
+              android:layout_marginLeft="20dp"
+              android:layout_marginRight="20dp"
+              android:layout_marginBottom="10dp"
+              android:layout_marginTop="3dp"
+
+              android:id="@+id/create_journal_photos"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="@string/dates"
+                android:layout_marginLeft="20dp"/>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+
+            <EditText android:layout_width="139dp"
+                      android:layout_height="wrap_content"
+                      android:hint="@string/start_date_placeholder"
+                      android:textColorHint="@color/hint_color"
+                      android:textColor="@color/black"
+                      android:background="@drawable/rounded_edittext"
+                      android:padding="6dp"
+                      android:layout_marginLeft="20dp"
+                      android:layout_marginRight="10dp"
+                      android:layout_marginBottom="10dp"
+                      android:layout_marginTop="3dp"
+
+                      android:id="@+id/create_journal_startdate"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/date_to_date"
+                      android:textColor="@color/black"/>
+
+            <EditText android:layout_width="139dp"
+                      android:layout_height="wrap_content"
+                      android:hint="@string/end_date_placeholder"
+                      android:textColorHint="#@color/hint_color"
+                      android:textColor="@color/black"
+                      android:background="@drawable/rounded_edittext"
+                      android:padding="6dp"
+                      android:layout_marginLeft="10dp"
+                      android:layout_marginRight="10dp"
+                      android:layout_marginBottom="10dp"
+                      android:layout_marginTop="3dp"
+
+                      android:id="@+id/create_journal_enddate"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/description"
+            android:layout_marginLeft="20dp"/>
+
+    <EditText android:layout_width="match_parent"
+              android:layout_height="120dp"
+              android:hint="@string/description_placeholder"
+              android:textColorHint="#@color/hint_color"
+              android:textColor="@color/black"
+              android:background="@drawable/rounded_edittext"
+              android:gravity="top"
+              android:padding="6dp"
+              android:layout_marginLeft="20dp"
+              android:layout_marginRight="20dp"
+              android:layout_marginBottom="10dp"
+              android:layout_marginTop="3dp"
+
+              android:id="@+id/create_journal_description"/>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal"
+                  android:gravity="bottom|center_horizontal">
+        <Button
+                android:text="@string/cancel_button"
+                android:layout_width="120dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_button_gray"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/create_event_submit"/>
+        <Button
+                android:text="@string/save_button"
+                android:textAlignment="center"
+                android:layout_width="120dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/round_button_blue"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/create_journal_cancel"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,14 +1,39 @@
 <resources>
+    <!--Nav menu-->
     <string name="app_name">BeenThere</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
-
     <string-array name="navigation_drawer_items_array">
         <item>BeenThere</item>
         <item>Journals</item>
         <item>Map</item>
     </string-array>
+
+    <!--Event/Journal Creation-->
+    <string name="create_event">Create an Event</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+
+    <string name="title">Title</string>
+    <string name="location">Location</string>
+    <string name="photos">Photos</string>
+    <string name="description">Description</string>
+    <string name="dates">Dates</string>
+    <string name="date_to_date">to</string>
+    <string name="add_to_journal">Add to Journal</string>
+    <string name="cost">Cost</string>
+    <string name="tags">Tags</string>
+
+    <string name="title_placeholder"><i>Enter Title</i></string>
+    <string name="location_placeholder"><i>Current Location</i></string>
+    <string name="select_photos"><i>Choose Photos</i></string>
+    <string name="description_placeholder"><i>Notes, thoughts, memories</i></string>
+    <string name="start_date_placeholder"><i>Start date</i></string>
+    <string name="end_date_placeholder"><i>End date</i></string>
+    <string name="cost_placeholder"><i>$00.00</i></string>
+    <string name="tags_placeholder"><i>Enter New Tag</i></string>
+
 </resources>
