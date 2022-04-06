@@ -40,7 +40,7 @@
     <EditText android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:hint="@string/location_placeholder"
-              android:textColorHint="@color/hint_color"
+              android:textColorHint="@color/theme_blue"
               android:textColor="@color/theme_blue"
               android:background="@drawable/rounded_edittext"
               android:padding="6dp"
