@@ -1,10 +1,10 @@
-package cs.byu.edu.beentherev2;
-
-import com.google.android.gms.maps.model.LatLng;
+package cs.byu.edu.beentherev2.model;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+
+import cs.byu.edu.beentherev2.model.Event;
 
 public class Journal {
     private String title;
@@ -13,6 +13,15 @@ public class Journal {
     private Date startDate;
     private Date endDate;
     private ArrayList<Event> events;
+
+    public Journal() {
+        title = "";
+        photo = new File("");
+        description = "";
+        startDate = new Date();
+        endDate = new Date();
+        events = new ArrayList<>();
+    }
 
     public String getTitle() {
         return title;

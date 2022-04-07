@@ -1,4 +1,4 @@
-package cs.byu.edu.beentherev2;
+package cs.byu.edu.beentherev2.fragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +15,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import cs.byu.edu.beentherev2.R;
 
 public class MapsFragment extends Fragment {
 

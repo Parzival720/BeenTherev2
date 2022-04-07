@@ -1,12 +1,12 @@
-package cs.byu.edu.beentherev2;
+package cs.byu.edu.beentherev2.placeholder;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import cs.byu.edu.beentherev2.model.Journal;
 import cs.byu.edu.beentherev2.placeholder.PlaceholderContent.PlaceholderItem;
 import cs.byu.edu.beentherev2.databinding.FragmentItemBinding;
 
@@ -18,9 +18,9 @@ import java.util.List;
  */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PlaceholderItem> mValues;
+    private final List<Journal> mValues;
 
-    public MyItemRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public MyItemRecyclerViewAdapter(List<Journal> items) {
         mValues = items;
     }
 
@@ -34,8 +34,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getTitle());
+        holder.mContentView.setText(mValues.get(position).getDescription());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
-        public PlaceholderItem mItem;
+        public Journal mItem;
 
         public ViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());

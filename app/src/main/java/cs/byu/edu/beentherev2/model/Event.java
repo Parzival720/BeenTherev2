@@ -1,4 +1,4 @@
-package cs.byu.edu.beentherev2;
+package cs.byu.edu.beentherev2.model;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -15,6 +15,17 @@ public class Event {
     private Date endDate;
     private Float cost;
     private ArrayList<String> tags;
+
+    public Event() {
+        title = "";
+        location = new LatLng(50, 50);
+        photos = new ArrayList<>();
+        description = "";
+        startDate = new Date();
+        endDate = new Date();
+        cost = 0f;
+        tags = new ArrayList<>();
+    }
 
     public String getTitle() {
         return title;

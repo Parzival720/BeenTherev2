@@ -15,6 +15,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+
+import cs.byu.edu.beentherev2.fragment.HomeFragment;
+import cs.byu.edu.beentherev2.fragment.ItemFragment;
+import cs.byu.edu.beentherev2.fragment.MapsFragment;
+import cs.byu.edu.beentherev2.model.DataModel;
+import cs.byu.edu.beentherev2.model.Event;
+import cs.byu.edu.beentherev2.model.Journal;
+
 public class MainActivity extends AppCompatActivity {
 
     private String[] mNavigationDrawerItemTitles;
@@ -24,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     ActionBarDrawerToggle mDrawerToggle;
+
+    private List<Journal> journals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +52,34 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         setupToolbar();
+
+        journals = new ArrayList<>();
+
+        Journal one = new Journal();
+        one.setTitle("IRELAND!!!");
+        one.setStartDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
+        one.setEndDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
+        one.setDescription("The cliffs of Moher were one of my favorite places to visit in " +
+                "Ireland. They were so pretty!");
+        journals.add(one);
+
+
+        Journal two = new Journal();
+        two.setTitle("IRELAND!!!");
+        two.setStartDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
+        two.setEndDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
+        two.setDescription("The cliffs of Moher were one of my favorite places to visit in " +
+                "Ireland. They were so pretty!");
+        journals.add(two);
+
+        Journal three = new Journal();
+        three.setTitle("IRELAND!!!");
+        three.setStartDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
+        three.setEndDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
+        three.setDescription("The cliffs of Moher were one of my favorite places to visit in " +
+                "Ireland. They were so pretty!");
+        journals.add(three);
+
 
         DataModel[] drawerItem = new DataModel[3];
 
@@ -59,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         setTitle(mNavigationDrawerItemTitles[0]);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
+
+    public List<Journal> getJournals() { return journals; }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
 

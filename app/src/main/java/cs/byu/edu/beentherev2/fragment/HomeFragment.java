@@ -1,4 +1,4 @@
-package cs.byu.edu.beentherev2;
+package cs.byu.edu.beentherev2.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+
+import cs.byu.edu.beentherev2.R;
 
 public class HomeFragment extends Fragment {
 

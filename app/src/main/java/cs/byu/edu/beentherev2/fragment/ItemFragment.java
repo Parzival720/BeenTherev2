@@ -1,4 +1,4 @@
-package cs.byu.edu.beentherev2;
+package cs.byu.edu.beentherev2.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cs.byu.edu.beentherev2.MainActivity;
+import cs.byu.edu.beentherev2.placeholder.MyItemRecyclerViewAdapter;
+import cs.byu.edu.beentherev2.R;
 import cs.byu.edu.beentherev2.placeholder.PlaceholderContent;
 
 /**
@@ -64,7 +67,8 @@ public class ItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(PlaceholderContent.ITEMS));
+            MainActivity activity = (MainActivity) getActivity();
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(activity.getJournals()));
         }
         return view;
     }

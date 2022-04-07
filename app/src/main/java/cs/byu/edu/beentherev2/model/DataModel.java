@@ -1,4 +1,4 @@
-package cs.byu.edu.beentherev2;
+package cs.byu.edu.beentherev2.model;
 
 public class DataModel {
 

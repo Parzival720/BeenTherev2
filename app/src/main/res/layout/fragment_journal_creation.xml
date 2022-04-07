@@ -5,7 +5,7 @@
               android:layout_height="550dp"
               android:background="@drawable/creation_fragment"
               android:orientation="vertical"
-              tools:context=".EventCreationFragment"
+              tools:context=".fragment.EventCreationFragment"
               android:layout_gravity="center">
 
     <TextView

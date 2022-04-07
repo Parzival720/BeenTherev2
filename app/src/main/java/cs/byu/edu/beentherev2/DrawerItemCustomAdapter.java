@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cs.byu.edu.beentherev2.model.DataModel;
+
 public class DrawerItemCustomAdapter extends ArrayAdapter<DataModel> {
 
     Context mContext;

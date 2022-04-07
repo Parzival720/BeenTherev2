@@ -1,4 +1,4 @@
-package cs.byu.edu.beentherev2;
+package cs.byu.edu.beentherev2.fragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cs.byu.edu.beentherev2.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link JournalCreationFragment#newInstance} factory method to
+ * Use the {@link EventCreationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class JournalCreationFragment extends Fragment {
+public class EventCreationFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,7 +24,7 @@ public class JournalCreationFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public JournalCreationFragment() {
+    public EventCreationFragment() {
         // Required empty public constructor
     }
 
@@ -32,11 +34,11 @@ public class JournalCreationFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment JournalCreationFragment.
+     * @return A new instance of fragment EventCreation.
      */
     // TODO: Rename and change types and number of parameters
-    public static JournalCreationFragment newInstance(String param1, String param2) {
-        JournalCreationFragment fragment = new JournalCreationFragment();
+    public static EventCreationFragment newInstance(String param1, String param2) {
+        EventCreationFragment fragment = new EventCreationFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,6 +59,6 @@ public class JournalCreationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_journal_creation, container, false);
+        return inflater.inflate(R.layout.fragment_event_creation, container, false);
     }
 }
