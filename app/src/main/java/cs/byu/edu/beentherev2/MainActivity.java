@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     Button addButton;
 
     private List<Journal> journals;
+    private Journal currentJournal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 "Ireland. They were so pretty!");
         journals.add(one);
 
+        currentJournal = one;
 
         Journal two = new Journal();
         two.setTitle("IRELAND!!!");
@@ -118,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<Journal> getJournals() { return journals; }
+
+    public Journal getCurrentJournal() { return currentJournal; }
 
     public void doPositiveClick() {
         Fragment fragment = new JournalCreationFragment();
