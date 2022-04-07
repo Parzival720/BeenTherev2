@@ -127,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new JournalCreationFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("journal").commit();
+
+        addButton = (Button) findViewById(R.id.add_button);
+        addButton.setVisibility(View.GONE);
         Log.i("FragmentAlertDialog", "Positive click!");
     }
 
@@ -134,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = new EventCreationFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("event").commit();
+
+        addButton = (Button) findViewById(R.id.add_button);
+        addButton.setVisibility(View.GONE);
         Log.i("FragmentAlertDialog", "Negative click!");
     }
 
@@ -143,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void popFromBackstack() {
+        addButton = (Button) findViewById(R.id.add_button);
+        addButton.setVisibility(View.VISIBLE);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStackImmediate();
     }
