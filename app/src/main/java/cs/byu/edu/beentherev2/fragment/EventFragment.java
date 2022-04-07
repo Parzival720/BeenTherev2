@@ -2,24 +2,24 @@ package cs.byu.edu.beentherev2.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import cs.byu.edu.beentherev2.MainActivity;
-import cs.byu.edu.beentherev2.placeholder.MyItemRecyclerViewAdapter;
 import cs.byu.edu.beentherev2.R;
+import cs.byu.edu.beentherev2.placeholder.EventRecyclerViewAdapter;
+import cs.byu.edu.beentherev2.placeholder.MyItemRecyclerViewAdapter;
 
 /**
  * A fragment representing a list of Items.
  */
-public class JournalFragment extends Fragment {
+public class EventFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -30,13 +30,13 @@ public class JournalFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public JournalFragment() {
+    public EventFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static JournalFragment newInstance(int columnCount) {
-        JournalFragment fragment = new JournalFragment();
+    public static EventFragment newInstance(int columnCount) {
+        EventFragment fragment = new EventFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -66,9 +66,8 @@ public class JournalFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-
             MainActivity activity = (MainActivity) getActivity();
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(activity.getJournals()));
+            recyclerView.setAdapter(new EventRecyclerViewAdapter(activity.getCurrentJournal().getEvents()));
         }
         return view;
     }

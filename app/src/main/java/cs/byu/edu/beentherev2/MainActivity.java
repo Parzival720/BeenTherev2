@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     Button addButton;
 
     private List<Journal> journals;
+    private Journal currentJournal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 "Ireland. They were so pretty!");
         journals.add(one);
 
+        currentJournal = one;
 
         Journal two = new Journal();
         two.setTitle("IRELAND!!!");
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerToggle();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new ItemFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new JournalFragment()).commit();
 
         mDrawerList.setItemChecked(0, true);
         mDrawerList.setSelection(0);
@@ -118,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<Journal> getJournals() { return journals; }
+
+    public Journal getCurrentJournal() { return currentJournal; }
 
     public void doPositiveClick() {
         Fragment fragment = new JournalCreationFragment();
@@ -167,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         // drop down menu items
         switch (position) {
             case 0:
-                fragment = new ItemFragment();
+                fragment = new JournalFragment();
                 break;
             case 1:
                 fragment = new MapsFragment();
