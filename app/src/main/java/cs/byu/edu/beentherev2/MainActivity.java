@@ -1,10 +1,12 @@
 package cs.byu.edu.beentherev2;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 
@@ -23,8 +25,11 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
+import cs.byu.edu.beentherev2.fragment.AddDialog;
+import cs.byu.edu.beentherev2.fragment.EventCreationFragment;
 import cs.byu.edu.beentherev2.fragment.HomeFragment;
 import cs.byu.edu.beentherev2.fragment.ItemFragment;
+import cs.byu.edu.beentherev2.fragment.JournalCreationFragment;
 import cs.byu.edu.beentherev2.fragment.MapsFragment;
 import cs.byu.edu.beentherev2.model.DataModel;
 import cs.byu.edu.beentherev2.model.Event;
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     ActionBarDrawerToggle mDrawerToggle;
+
+    Button addButton;
 
     private List<Journal> journals;
 
@@ -103,9 +110,42 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList.setSelection(0);
         setTitle(mNavigationDrawerItemTitles[0]);
         mDrawerLayout.closeDrawer(mDrawerList);
+
+        addButton = (Button)findViewById(R.id.add_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AddDialog().show(
+                        getSupportFragmentManager(), AddDialog.TAG);
+            }
+        });
     }
 
     public List<Journal> getJournals() { return journals; }
+
+    public void doPositiveClick() {
+        Fragment fragment = new JournalCreationFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("journal").commit();
+        Log.i("FragmentAlertDialog", "Positive click!");
+    }
+
+    public void doNegativeClick() {
+        Fragment fragment = new EventCreationFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("event").commit();
+        Log.i("FragmentAlertDialog", "Negative click!");
+    }
+
+    public void doNeutralClick() {
+        // Do stuff here.
+        Log.i("FragmentAlertDialog", "Negative click!");
+    }
+
+    public void popFromBackstack() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStackImmediate();
+    }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
 

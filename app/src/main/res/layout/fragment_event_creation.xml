@@ -229,7 +229,7 @@
                 android:textColor="@color/black"
                 android:layout_height="wrap_content"
 
-                android:id="@+id/create_event_submit"/>
+                android:id="@+id/create_event_cancel"/>
         <Button
                 android:text="@string/save_button"
                 android:textAlignment="center"
@@ -239,7 +239,7 @@
                 android:background="@drawable/round_button_blue"
                 android:layout_height="wrap_content"
 
-                android:id="@+id/create_event_cancel"/>
+                android:id="@+id/create_event_submit"/>
     </LinearLayout>
 
 </LinearLayout>
