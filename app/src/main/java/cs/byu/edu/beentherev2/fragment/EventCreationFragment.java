@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
 
 /**
@@ -59,6 +61,26 @@ public class EventCreationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_event_creation, container, false);
+        View view = inflater.inflate(R.layout.fragment_event_creation, container, false);
+
+        Button cancelButton = (Button)view.findViewById(R.id.create_event_cancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity activity = (MainActivity) getActivity();
+                activity.popFromBackstack();
+            }
+        });
+
+        Button saveButton = (Button)view.findViewById(R.id.create_event_submit);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity activity = (MainActivity) getActivity();
+                activity.popFromBackstack();
+            }
+        });
+
+        return view;
     }
 }

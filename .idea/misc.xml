@@ -5,9 +5,11 @@
       <map>
         <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/fragment_connect.xml" value="0.2672239108409321" />
+        <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/fragment_event_creation.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/fragment_fixtures.xml" value="0.2672239108409321" />
         <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/fragment_item.xml" value="0.15096251266464034" />
         <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/fragment_item_list.xml" value="0.14412360688956433" />
+        <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/fragment_journal_creation.xml" value="0.1766304347826087" />
         <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/fragment_maps.xml" value="0.15096251266464034" />
         <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/fragment_table.xml" value="0.2672239108409321" />
         <entry key="..\:/Users/ewalc/Documents/Winter2022/CS356/BeenTherev22/app/src/main/res/layout/list_view_item_row.xml" value="0.2672239108409321" />

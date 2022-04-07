@@ -36,4 +36,9 @@
     <string name="cost_placeholder"><i>$00.00</i></string>
     <string name="tags_placeholder"><i>Enter New Tag</i></string>
 
+    <string name="add_question">Would you like to add an event or a journal?</string>
+    <string name="cancel"><i>Cancel</i></string>
+    <string name="journal"><i>Journal</i></string>
+    <string name="event"><i>Event</i></string>
+
 </resources>
