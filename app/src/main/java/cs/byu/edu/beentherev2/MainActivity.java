@@ -15,19 +15,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
 
 import cs.byu.edu.beentherev2.fragment.HomeFragment;
-import cs.byu.edu.beentherev2.fragment.ItemFragment;
+import cs.byu.edu.beentherev2.fragment.JournalFragment;
 import cs.byu.edu.beentherev2.fragment.MapsFragment;
 import cs.byu.edu.beentherev2.model.DataModel;
-import cs.byu.edu.beentherev2.model.Event;
 import cs.byu.edu.beentherev2.model.Journal;
 
 public class MainActivity extends AppCompatActivity {
@@ -126,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new HomeFragment();
                 break;
             case 1:
-                fragment = new ItemFragment();
+                fragment = new JournalFragment();
                 break;
             case 2:
                 fragment = new MapsFragment();

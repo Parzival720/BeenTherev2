@@ -15,12 +15,11 @@ import android.view.ViewGroup;
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.placeholder.MyItemRecyclerViewAdapter;
 import cs.byu.edu.beentherev2.R;
-import cs.byu.edu.beentherev2.placeholder.PlaceholderContent;
 
 /**
  * A fragment representing a list of Items.
  */
-public class ItemFragment extends Fragment {
+public class JournalFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -31,13 +30,13 @@ public class ItemFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ItemFragment() {
+    public JournalFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ItemFragment newInstance(int columnCount) {
-        ItemFragment fragment = new ItemFragment();
+    public static JournalFragment newInstance(int columnCount) {
+        JournalFragment fragment = new JournalFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -56,7 +55,7 @@ public class ItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_journal_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
