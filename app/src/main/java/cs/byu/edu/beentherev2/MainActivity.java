@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
         journals.add(three);
 
 
-        DataModel[] drawerItem = new DataModel[3];
+        DataModel[] drawerItem = new DataModel[2];
 
-        drawerItem[0] = new DataModel(R.drawable.house, "BeenThere");
-        drawerItem[1] = new DataModel(R.drawable.journal, "Journals");
-        drawerItem[2] = new DataModel(R.drawable.map_icon, "Map");
+//        drawerItem[0] = new DataModel(R.drawable.house, "BeenThere");
+        drawerItem[0] = new DataModel(R.drawable.journal, "Journals");
+        drawerItem[1] = new DataModel(R.drawable.map_icon, "Map");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerToggle();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new ItemFragment()).commit();
 
         mDrawerList.setItemChecked(0, true);
         mDrawerList.setSelection(0);
@@ -167,12 +167,9 @@ public class MainActivity extends AppCompatActivity {
         // drop down menu items
         switch (position) {
             case 0:
-                fragment = new HomeFragment();
+                fragment = new ItemFragment();
                 break;
             case 1:
-                fragment = new JournalFragment();
-                break;
-            case 2:
                 fragment = new MapsFragment();
                 break;
 
