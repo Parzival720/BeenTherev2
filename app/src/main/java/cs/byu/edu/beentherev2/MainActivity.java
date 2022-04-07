@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerToggle();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new ItemFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new JournalFragment()).commit();
 
         mDrawerList.setItemChecked(0, true);
         mDrawerList.setSelection(0);
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         // drop down menu items
         switch (position) {
             case 0:
-                fragment = new ItemFragment();
+                fragment = new JournalFragment();
                 break;
             case 1:
                 fragment = new MapsFragment();
