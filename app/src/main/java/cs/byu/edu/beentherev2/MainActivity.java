@@ -121,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
 
     public List<Journal> getJournals() { return journals; }
 
+    public void addJournal(Journal journal) { journals.add(journal); }
+
     public Journal getCurrentJournal() { return currentJournal; }
 
     public void doPositiveClick() {

@@ -1,6 +1,7 @@
 package cs.byu.edu.beentherev2.fragment;
 
 import android.os.Bundle;
+import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
+import cs.byu.edu.beentherev2.model.Event;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,10 +74,24 @@ public class EventCreationFragment extends Fragment {
             }
         });
 
+        EditText title = (EditText) view.findViewById(R.id.create_event_title);
+        EditText description = (EditText) view.findViewById(R.id.create_event_description);
+        EditText cost = (EditText) view.findViewById(R.id.create_event_cost);
+
+        EditText startDate = (EditText) view.findViewById(R.id.create_event_startdate);
+        EditText endDate = (EditText) view.findViewById(R.id.create_event_enddate);
+
         Button saveButton = (Button)view.findViewById(R.id.create_event_submit);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //create the event
+                Event event = new Event();
+                event.setTitle(title.getText().toString());
+                event.setDescription(description.getText().toString());
+
+                //Figure out how to force formatting for both dates and cost
+
                 MainActivity activity = (MainActivity) getActivity();
                 activity.popFromBackstack();
             }

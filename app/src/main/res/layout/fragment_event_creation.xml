@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="350dp"
-             android:layout_height="675dp"
+             android:layout_height="550dp"
              android:background="@drawable/creation_fragment"
              android:orientation="vertical"
              tools:context=".fragment.EventCreationFragment"
@@ -131,7 +131,7 @@
             android:layout_marginLeft="20dp"/>
 
     <EditText android:layout_width="match_parent"
-              android:layout_height="120dp"
+              android:layout_height="60dp"
               android:hint="@string/description_placeholder"
               android:textColorHint="@color/hint_color"
               android:textColor="@color/black"
@@ -193,7 +193,7 @@
             </Spinner>
         </LinearLayout>
     </LinearLayout>
-
+    <!--
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -214,6 +214,7 @@
               android:layout_marginTop="3dp"
 
               android:id="@+id/create_event_tags"/>
+              -->
 
 
     <LinearLayout android:layout_width="match_parent"

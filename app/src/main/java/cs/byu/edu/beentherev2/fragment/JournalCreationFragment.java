@@ -1,6 +1,7 @@
 package cs.byu.edu.beentherev2.fragment;
 
 import android.os.Bundle;
+import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
+import cs.byu.edu.beentherev2.model.Journal;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,11 +73,22 @@ public class JournalCreationFragment extends Fragment {
             }
         });
 
+        EditText title = (EditText) view.findViewById(R.id.create_journal_title);
+        EditText description = (EditText) view.findViewById(R.id.create_journal_description);
+
         Button saveButton = (Button)view.findViewById(R.id.create_journal_submit);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //create Journal object and send back to main to be added to journals array
+                String journalTitle = title.getText().toString();
+                String journalDescription = description.getText().toString();
+                Journal journal = new Journal();
+                journal.setTitle(journalTitle);
+                journal.setDescription(journalDescription);
+
                 MainActivity activity = (MainActivity) getActivity();
+                activity.addJournal(journal);
                 activity.popFromBackstack();
             }
         });
