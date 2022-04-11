@@ -1,7 +1,9 @@
 package cs.byu.edu.beentherev2.fragment;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,10 @@ import android.widget.Button;
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
 import cs.byu.edu.beentherev2.model.Event;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,6 +79,16 @@ public class EventCreationFragment extends Fragment {
                 activity.popFromBackstack();
             }
         });
+
+        //SET SPINNER ITEMS
+        List<String> strings = new ArrayList<>();
+        strings.add("Option 1");
+        strings.add("Option 2");
+        strings.add("Option 3");
+
+        Spinner spinner = (Spinner) view.findViewById(R.id.create_event_journal_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, strings);
+        spinner.setAdapter(adapter);
 
         EditText title = (EditText) view.findViewById(R.id.create_event_title);
         EditText description = (EditText) view.findViewById(R.id.create_event_description);
