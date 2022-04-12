@@ -16,7 +16,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
+import cs.byu.edu.beentherev2.model.Event;
+import cs.byu.edu.beentherev2.model.Journal;
 
 public class MapsFragment extends Fragment {
 
@@ -33,9 +36,14 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            MainActivity mainActivity = (MainActivity) getActivity();
+
+            //grab all events and put their markers onto the map!
+            for (Journal journal : mainActivity.getJournals()) {
+                for (Event event : journal.getEvents()) {
+                    googleMap.addMarker(new MarkerOptions().position(event.getLocation()).title(event.getTitle()));
+                }
+            }
         }
     };
 

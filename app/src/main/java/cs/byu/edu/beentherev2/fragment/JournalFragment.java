@@ -3,6 +3,7 @@ package cs.byu.edu.beentherev2.fragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cs.byu.edu.beentherev2.MainActivity;
-import cs.byu.edu.beentherev2.placeholder.MyItemRecyclerViewAdapter;
+import cs.byu.edu.beentherev2.placeholder.JournalRecyclerViewAdapter;
 import cs.byu.edu.beentherev2.R;
 
 /**
@@ -68,7 +69,7 @@ public class JournalFragment extends Fragment {
             }
 
             MainActivity activity = (MainActivity) getActivity();
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(activity.getJournals()));
+            recyclerView.setAdapter(new JournalRecyclerViewAdapter(activity.getJournals()));
         }
         return view;
     }

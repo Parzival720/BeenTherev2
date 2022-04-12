@@ -1,5 +1,6 @@
 package cs.byu.edu.beentherev2.placeholder;
 
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -16,11 +17,11 @@ import java.util.List;
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
+public class JournalRecyclerViewAdapter extends RecyclerView.Adapter<JournalRecyclerViewAdapter.ViewHolder> {
 
     private final List<Journal> mValues;
 
-    public MyItemRecyclerViewAdapter(List<Journal> items) {
+    public JournalRecyclerViewAdapter(List<Journal> items) {
         mValues = items;
     }
 
@@ -58,5 +59,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
         }
+    }
+
+    public interface onJournalListener {
+        void onJournalClick(int position);
     }
 }

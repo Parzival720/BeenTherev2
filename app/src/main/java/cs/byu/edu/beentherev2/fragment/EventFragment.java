@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
 import cs.byu.edu.beentherev2.placeholder.EventRecyclerViewAdapter;
-import cs.byu.edu.beentherev2.placeholder.MyItemRecyclerViewAdapter;
 
 /**
  * A fragment representing a list of Items.

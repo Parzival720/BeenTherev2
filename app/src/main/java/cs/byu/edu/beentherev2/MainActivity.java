@@ -1,6 +1,5 @@
 package cs.byu.edu.beentherev2;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
+import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,16 +22,18 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import com.google.android.gms.maps.model.LatLng;
 import cs.byu.edu.beentherev2.fragment.AddDialog;
 import cs.byu.edu.beentherev2.fragment.EventCreationFragment;
-import cs.byu.edu.beentherev2.fragment.HomeFragment;
 import cs.byu.edu.beentherev2.fragment.JournalFragment;
 import cs.byu.edu.beentherev2.fragment.JournalCreationFragment;
 import cs.byu.edu.beentherev2.fragment.MapsFragment;
 import cs.byu.edu.beentherev2.model.DataModel;
+import cs.byu.edu.beentherev2.model.Event;
 import cs.byu.edu.beentherev2.model.Journal;
+import cs.byu.edu.beentherev2.placeholder.JournalRecyclerViewAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements JournalRecyclerViewAdapter.onJournalListener {
 
     private String[] mNavigationDrawerItemTitles;
     private DrawerLayout mDrawerLayout;
@@ -61,28 +63,43 @@ public class MainActivity extends AppCompatActivity {
 
         Journal one = new Journal();
         one.setTitle("IRELAND!!!");
-        one.setStartDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
-        one.setEndDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
-        one.setDescription("The cliffs of Moher were one of my favorite places to visit in " +
-                "Ireland. They were so pretty!");
+        one.setStartDate(new GregorianCalendar(2020, Calendar.MAY, 11).getTime());
+        one.setEndDate(new GregorianCalendar(2020, Calendar.MAY, 21).getTime());
+        one.setDescription("I got to Ireland with my family and my best friends and it was amazing!");
+
+        Event ireland1 = new Event();
+        ireland1.setTitle("Cliffs of Moher");
+        ireland1.setLocation(new LatLng(52.9720011201605, -9.430839508329006));
+        ireland1.setCost(new Float(13.19));
+        one.addEvent(ireland1);
         journals.add(one);
 
         currentJournal = one;
 
         Journal two = new Journal();
-        two.setTitle("IRELAND!!!");
-        two.setStartDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
-        two.setEndDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
-        two.setDescription("The cliffs of Moher were one of my favorite places to visit in " +
-                "Ireland. They were so pretty!");
+        two.setTitle("Alaska");
+        two.setStartDate(new GregorianCalendar(2021, Calendar.AUGUST, 17).getTime());
+        two.setEndDate(new GregorianCalendar(2021, Calendar.AUGUST, 27).getTime());
+        two.setDescription("Alaska has some of the coolest scenery I've ever seen. I'm hoping we'll get to go back and do more soon");
+
+        Event alaska1 = new Event();
+        alaska1.setTitle("Nat Shack");
+        alaska1.setLocation(new LatLng(61.12746893931103, -146.34576811494122));
+        alaska1.setCost(new Float(15.36));
+        two.addEvent(alaska1);
         journals.add(two);
 
         Journal three = new Journal();
-        three.setTitle("IRELAND!!!");
-        three.setStartDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
-        three.setEndDate(new GregorianCalendar(2014, Calendar.FEBRUARY, 11).getTime());
-        three.setDescription("The cliffs of Moher were one of my favorite places to visit in " +
-                "Ireland. They were so pretty!");
+        three.setTitle("Las Vegas");
+        three.setStartDate(new GregorianCalendar(2021, Calendar.OCTOBER, 8).getTime());
+        three.setEndDate(new GregorianCalendar(2021, Calendar.OCTOBER, 11).getTime());
+        three.setDescription("OMG the food in vegas was AMAZING can't wait to go back with the girls :))) ");
+
+        Event vegas1 = new Event();
+        vegas1.setTitle("Eureka! Discover American Craft");
+        vegas1.setLocation(new LatLng(36.168991532997886, -115.13967506349458));
+        vegas1.setCost(new Float(23.14));
+        three.addEvent(vegas1);
         journals.add(three);
 
 
@@ -109,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle(mNavigationDrawerItemTitles[0]);
         mDrawerLayout.closeDrawer(mDrawerList);
 
-        addButton = (Button)findViewById(R.id.add_button);
+        addButton = (Button) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,6 +172,12 @@ public class MainActivity extends AppCompatActivity {
         addButton.setVisibility(View.VISIBLE);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStackImmediate();
+    }
+
+    @Override
+    public void onJournalClick(int position) {
+        Journal clickedJournal = journals.get(position);
+        Toast.makeText(this, String.format("clicked on journal titled %s", clickedJournal.getTitle()), Toast.LENGTH_LONG).show();
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {

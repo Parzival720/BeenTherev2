@@ -1,13 +1,17 @@
 package cs.byu.edu.beentherev2.fragment;
 
 import android.content.Context;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.content.Context;
+import android.location.Location;
 
+import com.google.android.gms.maps.model.LatLng;
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
 import cs.byu.edu.beentherev2.model.Event;
@@ -110,10 +114,12 @@ public class EventCreationFragment extends Fragment {
                 event.setTitle(title.getText().toString());
                 event.setDescription(description.getText().toString());
 
-                //Figure out how to force formatting for both dates and cost
                 String beginDate = startDate.getText().toString();
                 String stopDate = endDate.getText().toString();
                 String costString = cost.getText().toString();
+
+                //Get locations in the form of a LatLng
+                LatLng location = null;
 
                 Date start = null;
                 Date end = null;
@@ -139,6 +145,12 @@ public class EventCreationFragment extends Fragment {
                     event.setStartDate(start);
                     event.setEndDate(end);
                     event.setCost(eventCost);
+                    //find way to parse from command line?
+                    if (location == null) {
+                        //set location to Provo (the Marb) if there is no location
+                        location = new LatLng(40.24688, -111.64920);
+                    }
+                    event.setLocation(location);
 
                     //attach to a specific journal
                     for (Journal journal : mainActivity.getJournals()) {

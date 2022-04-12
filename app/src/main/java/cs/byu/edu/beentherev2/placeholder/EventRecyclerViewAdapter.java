@@ -47,12 +47,19 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
+        //SOMEHOW NEED TO BIND DATES, COSTS
+        //public final TextView mStartDate;
+        //public final TextView mEndDate;
+        //public final TextView mCost;
         public Event mItem;
 
         public ViewHolder(FragmentJournalBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
             mContentView = binding.content;
+            //mStartDate = binding.endDate;
+            //mEndDate = binding.endDate;
+            //mCost = binding.cost;
         }
 
         @Override

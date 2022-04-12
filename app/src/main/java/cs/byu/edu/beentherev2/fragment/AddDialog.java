@@ -16,7 +16,7 @@ public class AddDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog askToAdd = new AlertDialog.Builder(requireContext())
+        AlertDialog askToAdd = new AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
                 .setMessage(getString(R.string.add_question))
                 .setPositiveButton(getString(R.string.journal), new DialogInterface.OnClickListener() {
                     @Override

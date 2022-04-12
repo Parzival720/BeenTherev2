@@ -31,7 +31,7 @@
     <string name="select_photos"><i>Choose Photos</i></string>
     <string name="description_placeholder"><i>Notes, thoughts, memories</i></string>
     <string name="date_placeholder"><i>MM/DD/YYYY</i></string>
-    <string name="cost_placeholder"><i>$00.00</i></string>
+    <string name="cost_placeholder"><i>00.00</i></string>
     <string name="tags_placeholder"><i>Enter New Tag</i></string>
 
     <string name="add_question">Would you like to add an event or a journal?</string>
