@@ -1,21 +1,22 @@
 package cs.byu.edu.beentherev2.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.*;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
 import cs.byu.edu.beentherev2.model.Event;
+import cs.byu.edu.beentherev2.model.Journal;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,6 +69,8 @@ public class EventCreationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        MainActivity mainActivity = (MainActivity) getActivity();
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event_creation, container, false);
 
@@ -75,19 +78,19 @@ public class EventCreationFragment extends Fragment {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.popFromBackstack();
+                mainActivity.popFromBackstack();
             }
         });
 
         //SET SPINNER ITEMS
         List<String> strings = new ArrayList<>();
-        strings.add("Option 1");
-        strings.add("Option 2");
-        strings.add("Option 3");
+
+        for (Journal journal : mainActivity.getJournals()) {
+            strings.add(journal.getTitle());
+        }
 
         Spinner spinner = (Spinner) view.findViewById(R.id.create_event_journal_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, strings);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, strings);
         spinner.setAdapter(adapter);
 
         EditText title = (EditText) view.findViewById(R.id.create_event_title);
@@ -101,15 +104,52 @@ public class EventCreationFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Context context = view.getContext();
                 //create the event
                 Event event = new Event();
                 event.setTitle(title.getText().toString());
                 event.setDescription(description.getText().toString());
 
                 //Figure out how to force formatting for both dates and cost
+                String beginDate = startDate.getText().toString();
+                String stopDate = endDate.getText().toString();
+                String costString = cost.getText().toString();
 
-                MainActivity activity = (MainActivity) getActivity();
-                activity.popFromBackstack();
+                Date start = null;
+                Date end = null;
+                Float eventCost = new Float(0);
+                Boolean success = true;
+                try {
+                    start = new SimpleDateFormat("dd/MM/yyyy").parse(beginDate);
+                    end = new SimpleDateFormat("dd/MM/yyyy").parse(stopDate);
+                    eventCost = Float.parseFloat(costString);
+                }
+                catch (NumberFormatException e) {
+                    System.out.println(e);
+                    Toast.makeText(context, "Invalid cost offered, unable to add journal", Toast.LENGTH_LONG).show();
+                    success = false;
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                    Toast.makeText(context, "Invalid date offered, unable to add journal", Toast.LENGTH_LONG).show();
+                    success = false;
+                }
+
+                if (success) {
+                    event.setStartDate(start);
+                    event.setEndDate(end);
+                    event.setCost(eventCost);
+
+                    //attach to a specific journal
+                    for (Journal journal : mainActivity.getJournals()) {
+                        if (journal.getTitle() == spinner.getSelectedItem().toString()) {
+                            journal.addEvent(event);
+                            Toast.makeText(context, String.format("Successfully added to %s", journal.getTitle()), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+
+                mainActivity.popFromBackstack();
             }
         });
 

@@ -1,7 +1,9 @@
 package cs.byu.edu.beentherev2.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,9 @@ import android.widget.Button;
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
 import cs.byu.edu.beentherev2.model.Journal;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,34 +67,57 @@ public class JournalCreationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        MainActivity mainActivity = (MainActivity) getActivity();
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_journal_creation, container, false);
         Button cancelButton = (Button)view.findViewById(R.id.create_journal_cancel);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.popFromBackstack();
+                mainActivity.popFromBackstack();
             }
         });
 
         EditText title = (EditText) view.findViewById(R.id.create_journal_title);
         EditText description = (EditText) view.findViewById(R.id.create_journal_description);
+        EditText startDate = (EditText) view.findViewById(R.id.create_journal_start_date);
+        EditText endDate = (EditText) view.findViewById(R.id.create_journal_end_date);
 
         Button saveButton = (Button)view.findViewById(R.id.create_journal_submit);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Context context = view.getContext();
                 //create Journal object and send back to main to be added to journals array
                 String journalTitle = title.getText().toString();
                 String journalDescription = description.getText().toString();
                 Journal journal = new Journal();
                 journal.setTitle(journalTitle);
                 journal.setDescription(journalDescription);
+                String beginDate = startDate.getText().toString();
+                String stopDate = endDate.getText().toString();
 
-                MainActivity activity = (MainActivity) getActivity();
-                activity.addJournal(journal);
-                activity.popFromBackstack();
+                Date start = null;
+                Date end = null;
+                Boolean success = true;
+                try {
+                    start = new SimpleDateFormat("dd/MM/yyyy").parse(beginDate);
+                    end = new SimpleDateFormat("dd/MM/yyyy").parse(stopDate);
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                    Toast.makeText(context, "Invalid date offered, unable to add journal", Toast.LENGTH_LONG).show();
+                    success = false;
+                }
+
+                if (success) {
+                    journal.setStartDate(start);
+                    journal.setEndDate(end);
+                    mainActivity.addJournal(journal);
+                }
+
+                mainActivity.popFromBackstack();
             }
         });
         return view;

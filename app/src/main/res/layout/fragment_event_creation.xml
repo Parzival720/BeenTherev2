@@ -90,7 +90,7 @@
 
             <EditText android:layout_width="139dp"
                       android:layout_height="wrap_content"
-                      android:hint="@string/start_date_placeholder"
+                      android:hint="@string/date_placeholder"
                       android:textColorHint="@color/hint_color"
                       android:textColor="@color/black"
                       android:background="@drawable/rounded_edittext"
@@ -109,7 +109,7 @@
 
             <EditText android:layout_width="139dp"
                       android:layout_height="wrap_content"
-                      android:hint="@string/end_date_placeholder"
+                      android:hint="@string/date_placeholder"
                       android:textColorHint="@color/hint_color"
                       android:textColor="@color/black"
                       android:background="@drawable/rounded_edittext"
@@ -181,14 +181,13 @@
                       android:id="@+id/create_event_cost"/>
 
         <!--Must be defined in code I think-->
-            <Spinner android:layout_width="match_parent" android:layout_height="wrap_content"
+            <Spinner android:layout_width="match_parent" android:layout_height="36dp"
                      android:background="@drawable/rounded_edittext"
                      android:padding="6dp"
                      android:layout_marginLeft="10dp"
                      android:layout_marginRight="20dp"
                      android:layout_marginBottom="10dp"
                      android:layout_marginTop="3dp"
-
                      android:id="@+id/create_event_journal_spinner">
             </Spinner>
         </LinearLayout>

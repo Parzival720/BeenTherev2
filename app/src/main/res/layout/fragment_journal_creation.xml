@@ -89,7 +89,7 @@
 
             <EditText android:layout_width="139dp"
                       android:layout_height="wrap_content"
-                      android:hint="@string/start_date_placeholder"
+                      android:hint="@string/date_placeholder"
                       android:textColorHint="@color/hint_color"
                       android:textColor="@color/black"
                       android:background="@drawable/rounded_edittext"
@@ -108,7 +108,7 @@
 
             <EditText android:layout_width="139dp"
                       android:layout_height="wrap_content"
-                      android:hint="@string/end_date_placeholder"
+                      android:hint="@string/date_placeholder"
                       android:textColorHint="@color/hint_color"
                       android:textColor="@color/black"
                       android:background="@drawable/rounded_edittext"

@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-    android:layout_height="wrap_content" android:layout_marginTop="15dp"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="15dp"
+              android:padding="12dp"
+              android:orientation="vertical">
 
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content" android:orientation="horizontal">
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:background="@color/theme_blue"
+                  android:padding="8dp">
 
         <TextView
                 android:id="@+id/item_number"
-                android:hint="this is for demonstration only"
+                android:hint="this is for demonstration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/theme_blue"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:layout_gravity="left"/>
 
         <TextView
                 android:id="@+id/journal_date"
-                android:text="start date to end date"
+                android:text="start date - end date"
                 android:textStyle="italic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,18 +34,21 @@
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:orientation="horizontal">
+                  android:orientation="horizontal"
+                  android:background="@color/text_fields"
+                  android:padding="8dp">
 
         <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@android:drawable/btn_star_big_on"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/btn_star_big_on"
                 android:id="@+id/imageView"/>
         <TextView
             android:id="@+id/content"
             android:hint="this is where the description should go"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:layout_margin="@dimen/text_margin" />
     </LinearLayout>
 </LinearLayout>
