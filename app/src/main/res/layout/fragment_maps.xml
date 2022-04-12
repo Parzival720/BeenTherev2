@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.MapsFragment">
-
+    <!--
     <Button
             android:layout_gravity="bottom|right"
             android:layout_marginBottom="117dp"
@@ -16,5 +16,16 @@
             android:text="location"
             android:background="@drawable/circle_button"
 
-            android:id="@+id/add_button"/>
+
+            android:id="@+id/add_button"/>-->
+
+    <ImageButton
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="117dp"
+            android:layout_marginRight="25dp"
+            android:id="@+id/location_button"
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:src="@drawable/navigation"
+            android:background="@drawable/circle_button"/>
 </fragment>

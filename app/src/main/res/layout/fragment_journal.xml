@@ -3,52 +3,49 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginTop="15dp"
-              android:padding="12dp"
+              android:layout_margin="12dp"
               android:orientation="vertical">
 
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+                  android:layout_height="40dp"
                   android:orientation="horizontal"
-                  android:background="@color/theme_blue"
-                  android:padding="8dp">
+                  android:background="@drawable/title_date">
 
         <TextView
                 android:id="@+id/item_number"
                 android:hint="this is for demonstration"
-                android:layout_width="wrap_content"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:layout_gravity="left"/>
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="10dp" />
 
-        <TextView
-                android:id="@+id/journal_date"
-                android:text="start date - end date"
-                android:textStyle="italic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:layout_gravity="right"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="5dp"
+                  android:textColor="@color/black"
+                  android:text="start date - end date"/>
 
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:orientation="horizontal"
-                  android:background="@color/text_fields"
+                  android:background="@drawable/content"
                   android:padding="8dp">
 
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 app:srcCompat="@android:drawable/btn_star_big_on"
                 android:id="@+id/imageView"/>
         <TextView
             android:id="@+id/content"
             android:hint="this is where the description should go"
-            android:textColor="@color/black"
+            android:lineSpacingMultiplier="1.5"
+            android:textColor="@color/hint_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin" />
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
 </LinearLayout>

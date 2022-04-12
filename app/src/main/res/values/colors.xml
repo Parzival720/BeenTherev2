@@ -17,4 +17,7 @@
     <color name="hint_color">#3D3D3D</color>
     <color name="theme_blue">#00AEEF</color>
     <color name="darker_gray">#C4C4C4</color>
+
+    <!--Other theme colors-->
+    <color name="light_blue">#BBE9FB</color>
 </resources>

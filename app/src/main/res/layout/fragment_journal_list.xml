@@ -5,9 +5,11 @@
     android:id="@+id/list"
     android:name="cs.byu.edu.beentherev2.ItemFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_height="match_parent" android:paddingTop="16dp"
+                                           android:paddingLeft="16dp"
+                                           android:paddingRight="16dp"
+                                           android:paddingBottom="75dp"
+
     app:layoutManager="LinearLayoutManager"
     tools:context=".fragment.JournalFragment"
-    tools:listitem="@layout/fragment_journal" />
+    tools:listitem="@layout/fragment_journal" android:clipToPadding="false"/>
