@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.ref.WeakReference;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,13 +49,22 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mTitleView.setText(mValues.get(position).getTitle());
-        String start = mValues.get(position).getPrettyStartDate();
-        String end = mValues.get(position).getPrettyEndDate();
-        if (end == null) {
+
+        Date startDate = mValues.get(position).getStartDate();
+        Calendar startCalendar = Calendar.getInstance();
+        startCalendar.setTime(startDate);
+        Date endDate = mValues.get(position).getEndDate();
+        Calendar endCalendar = Calendar.getInstance();
+        endCalendar.setTime(startDate);
+        if (endDate == null || (startCalendar.get(Calendar.YEAR) == endCalendar.get(Calendar.YEAR) && startCalendar.get(Calendar.MONTH) == endCalendar.get(Calendar.MONTH) && startCalendar.get(Calendar.DAY_OF_MONTH) == endCalendar.get(Calendar.DAY_OF_MONTH))) {
+            String start = mValues.get(position).getPrettyStartDate();
             holder.mDatesView.setText(start);
         } else {
+            String start = mValues.get(position).getPrettyStartDate();
+            String end = mValues.get(position).getPrettyEndDate();
             holder.mDatesView.setText(start + " - " + end);
         }
+
         holder.mLocView.setText(mValues.get(position).getPrettyLocation());
         holder.mDescriptionView.setText(mValues.get(position).getDescription());
         float cost = mValues.get(position).getCost();
