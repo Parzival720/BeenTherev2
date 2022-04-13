@@ -6,8 +6,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
+import cs.byu.edu.beentherev2.databinding.FragmentEventBinding;
 import cs.byu.edu.beentherev2.databinding.FragmentJournalBinding;
 import cs.byu.edu.beentherev2.model.Event;
 import cs.byu.edu.beentherev2.model.Journal;
@@ -28,15 +30,19 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new ViewHolder(FragmentJournalBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(FragmentEventBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getTitle());
-        holder.mContentView.setText(mValues.get(position).getDescription());
+        holder.mIdView.setText(holder.mItem.getTitle());
+        SimpleDateFormat format = new SimpleDateFormat("MMM d yyyy");
+        holder.mStartDate.setText(format.format(holder.mItem.getStartDate()));
+        holder.mEndDate.setText(format.format(holder.mItem.getEndDate()));
+        holder.mContentView.setText(holder.mItem.getDescription());
+        holder.mCost.setText(holder.mItem.getCost().toString());
     }
 
     @Override
@@ -47,19 +53,21 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
-        //SOMEHOW NEED TO BIND DATES, COSTS
-        //public final TextView mStartDate;
-        //public final TextView mEndDate;
+        public final TextView mStartDate;
+        public final TextView mEndDate;
+        public final TextView mCost;
+
+        //COST TO BE IMPLEMENTED
         //public final TextView mCost;
         public Event mItem;
 
-        public ViewHolder(FragmentJournalBinding binding) {
+        public ViewHolder(FragmentEventBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
             mContentView = binding.content;
-            //mStartDate = binding.endDate;
-            //mEndDate = binding.endDate;
-            //mCost = binding.cost;
+            mStartDate = binding.startDateEvent;
+            mEndDate = binding.endDateEvent;
+            mCost = binding.cost;
         }
 
         @Override

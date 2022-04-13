@@ -19,7 +19,8 @@
                 android:textSize="18dp"
                 android:textColor="@color/black"
                 android:layout_marginTop="7dp"
-                android:layout_marginLeft="10dp" android:layout_marginBottom="12dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="12dp"/>
 
         <RelativeLayout android:layout_width="205dp" android:layout_height="match_parent" >
             <TextView android:layout_width="wrap_content"
@@ -63,13 +64,14 @@
                 android:layout_height="130dp"
                 app:srcCompat="@android:drawable/btn_star_big_on"
                 android:id="@+id/journal_image"/>
+
         <TextView
-            android:id="@+id/content"
-            android:hint="this is where the description should go"
-            android:lineSpacingMultiplier="1.5"
-            android:textColor="@color/hint_color"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"/>
+                android:id="@+id/content"
+                android:hint="this is where the description should go"
+                android:lineSpacingMultiplier="1.5"
+                android:textColor="@color/hint_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"/>
     </LinearLayout>
 </LinearLayout>
