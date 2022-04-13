@@ -61,7 +61,12 @@ public class MapsFragment extends Fragment {
 
             addCustomMarker();
 
-
+            LatLng currentLocation = mainActivity.getCurrentLocation();
+            if (currentLocation != null) {
+                CameraUpdate cameraUpdate =
+                        CameraUpdateFactory.newLatLngZoom(currentLocation, 12);
+                mMap.animateCamera(cameraUpdate);
+            }
         }
 
         private void addCustomMarker() {

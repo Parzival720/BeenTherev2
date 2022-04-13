@@ -2,13 +2,17 @@ package cs.byu.edu.beentherev2.placeholder;
 
 import android.os.Build;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.ref.WeakReference;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,15 +30,17 @@ import cs.byu.edu.beentherev2.placeholder.PlaceholderContent.PlaceholderItem;
 public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecyclerViewAdapter.ViewHolder> {
 
     private final List<Event> mValues;
+    private final ClickListener listener;
 
-    public EventRecyclerViewAdapter(List<Event> items) {
+    public EventRecyclerViewAdapter(List<Event> items, ClickListener listener) {
         mValues = items;
+        this.listener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new ViewHolder(FragmentEventBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(FragmentEventBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false), listener);
 
     }
 
@@ -68,7 +74,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public final TextView mTitleView;
         public final TextView mDatesView;
         public final ImageView mPhotoView;
@@ -77,10 +83,14 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         public final TextView mCostView;
         public final TextView mTagsView;
 
+        public final LinearLayout mLocBox;
+        private WeakReference<ClickListener> listenerRef;
+
         public Event mItem;
 
-        public ViewHolder(FragmentEventBinding binding) {
+        public ViewHolder(FragmentEventBinding binding, ClickListener listener) {
             super(binding.getRoot());
+            listenerRef = new WeakReference<>(listener);
             mTitleView = binding.eventTitle;
             mDatesView = binding.eventDates;
             mPhotoView = binding.eventPhoto;
@@ -88,11 +98,26 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
             mDescriptionView = binding.eventDescription;
             mCostView = binding.eventCost;
             mTagsView = binding.eventTags;
+            mLocBox = binding.eventLocationContainer;
+            binding.getRoot().setOnClickListener(this);
+            mLocBox.setOnClickListener(this);
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + mDescriptionView.getText() + "'";
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == mLocBox.getId()) {
+                listenerRef.get().onPositionClicked(getAbsoluteAdapterPosition());
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            return false;
         }
     }
 }

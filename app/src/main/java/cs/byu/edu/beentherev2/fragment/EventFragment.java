@@ -6,14 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
+import cs.byu.edu.beentherev2.placeholder.ClickListener;
 import cs.byu.edu.beentherev2.placeholder.EventRecyclerViewAdapter;
 import cs.byu.edu.beentherev2.placeholder.RecyclerItemClickListener;
 
@@ -69,7 +74,21 @@ public class EventFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new EventRecyclerViewAdapter(activity.getCurrentJournal().getEvents()));
+            recyclerView.setAdapter(new EventRecyclerViewAdapter(activity.getCurrentJournal().getEvents(), new ClickListener() {
+                @Override
+                public void onPositionClicked(int position) {
+                    Toast.makeText(view.getContext(), activity.getCurrentJournal().getEvents().get(position).getPrettyLocation(), Toast.LENGTH_SHORT).show();
+                    LatLng newLocation = activity.getCurrentJournal().getEvents().get(position).getLocation();
+                    activity.setCurrentLocation(newLocation);
+                    activity.jumpToMap();
+                }
+
+                @Override
+                public void onLongClicked(int position) {
+
+                }
+            }));
+
         }
         return view;
     }

@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
     private Journal currentJournal;
     private String previousWindow;
 
+    private LatLng currentLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         setupToolbar();
+
+        currentLocation = null;
 
         journals = new ArrayList<>();
 
@@ -175,6 +179,12 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
 
     public Journal getCurrentJournal() { return currentJournal; }
 
+    public LatLng getCurrentLocation() { return currentLocation; }
+
+    public void setCurrentLocation(LatLng newLocation) {
+        this.currentLocation = newLocation;
+    }
+
     public void doPositiveClick() {
         Fragment fragment = new JournalCreationFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -198,6 +208,18 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
     public void doNeutralClick() {
         // Do stuff here.
         Log.i("FragmentAlertDialog", "Negative click!");
+    }
+
+    public void jumpToMap() {
+        Fragment fragment = new MapsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+        mDrawerList.setItemChecked(1, true);
+        mDrawerList.setSelection(1);
+        setTitle(mNavigationDrawerItemTitles[1]);
+        mDrawerLayout.closeDrawer(mDrawerList);
+        previousWindow = mNavigationDrawerItemTitles[1];
     }
 
     public void popFromBackstack() {
