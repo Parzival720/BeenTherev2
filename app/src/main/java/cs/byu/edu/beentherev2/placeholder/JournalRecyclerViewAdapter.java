@@ -1,6 +1,5 @@
 package cs.byu.edu.beentherev2.placeholder;
 
-import android.view.View;
 import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,8 +11,6 @@ import cs.byu.edu.beentherev2.model.Journal;
 import cs.byu.edu.beentherev2.placeholder.PlaceholderContent.PlaceholderItem;
 import cs.byu.edu.beentherev2.databinding.FragmentJournalBinding;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.text.*;
 
