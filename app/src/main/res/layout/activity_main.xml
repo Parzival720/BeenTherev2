@@ -25,30 +25,91 @@
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar"
-            />
+                />
         </LinearLayout>
 
 
         <FrameLayout
             android:layout_width="match_parent"
+            android:id="@+id/full_screen"
             android:layout_height="match_parent" >
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/content_frame">
 
+            <LinearLayout
+                android:id="@+id/content_frame"
+                android:layout_width="match_parent"
+                android:layout_height="574dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_height="100dp"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:layout_height="67dp"
+                    android:layout_width="67dp"
+                    android:id="@+id/add_button"
+                    android:scaleType="fitXY"
+                    app:tint="@color/white"
+                    android:src="@drawable/plus"
+                    android:background="@drawable/circle_button_border"/>
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:id="@+id/journalsButton"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:tint="@color/black"
+                        app:srcCompat="@drawable/journal2"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:text="Journals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="25sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="7dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:id="@+id/mapButton"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:tint="@color/black"
+                        app:srcCompat="@drawable/map_icon2"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="7dp"
+                        android:text="Map"
+                        android:textColor="@color/black"
+                        android:textSize="25sp" />
+                </LinearLayout>
             </FrameLayout>
-            <ImageButton
-                android:layout_gravity="bottom|right"
-                android:layout_margin="25dp"
-                android:layout_height="67dp"
-                android:layout_width="67dp"
-                android:id="@+id/add_button"
-                android:scaleType="fitXY"
-                app:tint="@color/white"
-                android:src="@drawable/plus"
-                android:background="@drawable/circle_button"/>
+
         </FrameLayout>
+
+
 
     </LinearLayout>
 

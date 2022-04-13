@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import cs.byu.edu.beentherev2.databinding.FragmentEventBinding;
-import cs.byu.edu.beentherev2.databinding.FragmentJournalBinding;
 import cs.byu.edu.beentherev2.model.Event;
 import cs.byu.edu.beentherev2.model.Journal;
 import cs.byu.edu.beentherev2.placeholder.PlaceholderContent.PlaceholderItem;

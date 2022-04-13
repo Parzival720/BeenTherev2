@@ -64,7 +64,7 @@ public class MapsFragment extends Fragment {
             LatLng currentLocation = mainActivity.getCurrentLocation();
             if (currentLocation != null) {
                 CameraUpdate cameraUpdate =
-                        CameraUpdateFactory.newLatLngZoom(currentLocation, 12);
+                        CameraUpdateFactory.newLatLngZoom(currentLocation, 15);
                 mMap.animateCamera(cameraUpdate);
             }
         }
@@ -101,11 +101,9 @@ public class MapsFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CameraUpdate center =
-                        CameraUpdateFactory.newLatLng(new LatLng(40.24688, -111.64920));
-                CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
-                mMap.moveCamera(center);
-                mMap.animateCamera(zoom);
+                CameraUpdate cameraUpdate =
+                        CameraUpdateFactory.newLatLngZoom(new LatLng(40.24688, -111.64920), 15);
+                mMap.animateCamera(cameraUpdate);
             }
         });
 

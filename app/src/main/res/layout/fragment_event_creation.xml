@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="350dp"
-             android:layout_height="550dp"
+             android:layout_height="520dp"
              android:background="@drawable/creation_fragment"
              android:orientation="vertical"
              tools:context=".fragment.EventCreationFragment"
@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:text="@string/title"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"/>
 
     <EditText android:layout_width="match_parent"
@@ -181,7 +181,7 @@
                       android:background="@drawable/rounded_edittext"
                       android:padding="6dp"
                       android:layout_marginRight="10dp"
-                      android:layout_marginBottom="10dp"
+                      android:layout_marginBottom="2dp"
                       android:layout_marginTop="3dp"
 
                       android:id="@+id/create_event_cost"/>
@@ -192,7 +192,7 @@
                      android:padding="6dp"
                      android:layout_marginLeft="10dp"
                      android:layout_marginRight="20dp"
-                     android:layout_marginBottom="10dp"
+                     android:layout_marginBottom="2dp"
                      android:layout_marginTop="3dp"
                      android:id="@+id/create_event_journal_spinner">
             </Spinner>

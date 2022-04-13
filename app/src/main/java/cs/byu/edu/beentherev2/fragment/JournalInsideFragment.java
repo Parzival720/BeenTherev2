@@ -34,12 +34,12 @@ public class JournalInsideFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         activity.inflateEventList();
 
-        Button backButton = (Button) activity.findViewById(R.id.journal_back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activity.popFromBackstack();
-            }
-        });
+//        Button backButton = (Button) activity.findViewById(R.id.journal_back_button);
+//        backButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                activity.popFromBackstack();
+//            }
+//        });
     }
 }

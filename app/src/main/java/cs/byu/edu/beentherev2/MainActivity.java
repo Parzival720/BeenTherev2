@@ -13,8 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 
@@ -50,13 +52,9 @@ import cs.byu.edu.beentherev2.placeholder.JournalRecyclerViewAdapter;
 
 public class MainActivity extends AppCompatActivity implements JournalRecyclerViewAdapter.onJournalListener {
 
-    private String[] mNavigationDrawerItemTitles;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
     Toolbar toolbar;
-    private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    ActionBarDrawerToggle mDrawerToggle;
+
 
     ImageButton addButton;
 
@@ -70,10 +68,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mTitle = mDrawerTitle = getTitle();
-        mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mTitle = getTitle();
 
         setupToolbar();
 
@@ -91,13 +86,34 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         Event ireland1 = new Event();
         ireland1.setTitle("Cliffs of Moher");
         ireland1.setLocation(new LatLng(52.9720011201605, -9.430839508329006));
-        ireland1.setCost(new Float(13.19));
+        ireland1.setCost(new Float(0));
         ireland1.setStartDate(new GregorianCalendar(2020, Calendar.MAY, 17).getTime());
         ireland1.setEndDate(new GregorianCalendar(2020, Calendar.MAY, 18).getTime());
         ireland1.setDescription("WOAH! I can't believe places like this exist outside of scenic documentaries");
         ireland1.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.moher))));
         ireland1.setTags(new ArrayList<String>(Arrays.asList("Hike", "Cliffs", "UK")));
         one.addEvent(ireland1);
+
+        Event ireland2 = new Event();
+        ireland2.setTitle("Blarney Stone");
+        ireland2.setLocation(new LatLng(51.933949, -8.559486));
+        ireland2.setCost(new Float(0));
+        ireland2.setStartDate(new GregorianCalendar(2020, Calendar.MAY, 19).getTime());
+        ireland2.setDescription("Kissed the stone. Probably got a couple rare diseases");
+        ireland2.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.blarney))));
+        ireland2.setTags(new ArrayList<String>(Arrays.asList("Historic", "UK")));
+        one.addEvent(ireland2);
+
+        Event ireland3 = new Event();
+        ireland3.setTitle("The Old Quarter Pub");
+        ireland3.setLocation(new LatLng(52.664256, -8.624549));
+        ireland3.setCost(new Float(26.35));
+        ireland3.setStartDate(new GregorianCalendar(2020, Calendar.MAY, 19).getTime());
+        ireland3.setDescription("Drank apple juice in limerick with some dirty irishmen. Well their poems were dirty ;)");
+        ireland3.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.pub))));
+        ireland3.setTags(new ArrayList<String>(Arrays.asList("Bar", "Food", "UK")));
+        one.addEvent(ireland3);
+
         journals.add(one);
 
         currentJournal = one;
@@ -136,32 +152,38 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         vegas1.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.eureka))));
         vegas1.setTags(new ArrayList<String>(Arrays.asList("Food", "USA", "Expensive")));
         three.addEvent(vegas1);
+
+        Event vegas2 = new Event();
+        vegas2.setTitle("Helicopter Night Tour");
+        vegas2.setStartDate(new GregorianCalendar(2021, Calendar.OCTOBER, 9).getTime());
+        vegas2.setLocation(new LatLng(36.122180, -115.175091));
+        vegas2.setCost(new Float(120.00));
+        vegas2.setDescription("Was a little pricey but the view of the strip from above was incredible!");
+        vegas2.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.vegas_helicopter))));
+        vegas2.setTags(new ArrayList<String>(Arrays.asList("Tour", "USA", "Expensive", "Risk")));
+        three.addEvent(vegas2);
+
+        Event vegas3 = new Event();
+        vegas3.setTitle("48th and Crepe");
+        vegas3.setStartDate(new GregorianCalendar(2021, Calendar.OCTOBER, 10).getTime());
+        vegas3.setLocation(new LatLng(36.101958, -115.173472));
+        vegas3.setCost(new Float(25.00));
+        vegas3.setDescription("Cute crepe place in the New York Casino. Fun but probably won't go back");
+        vegas3.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.crepe))));
+        vegas3.setTags(new ArrayList<String>(Arrays.asList("Food", "USA")));
+        three.addEvent(vegas3);
+
         journals.add(three);
 
-
-        DataModel[] drawerItem = new DataModel[2];
-
-//        drawerItem[0] = new DataModel(R.drawable.house, "BeenThere");
-        drawerItem[0] = new DataModel(R.drawable.journal, "Journals");
-        drawerItem[1] = new DataModel(R.drawable.map_icon, "Map");
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.list_view_item_row, drawerItem);
-        mDrawerList.setAdapter(adapter);
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-        setupDrawerToggle();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, new JournalFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, new MapsFragment()).commit();
 
-        previousWindow = "Journals";
-        mDrawerList.setItemChecked(0, true);
-        mDrawerList.setSelection(0);
-        setTitle(mNavigationDrawerItemTitles[0]);
-        mDrawerLayout.closeDrawer(mDrawerList);
+        previousWindow = "Map";
+        setTitle("Map");
 
         addButton = (ImageButton) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +193,64 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
                         getSupportFragmentManager(), AddDialog.TAG);
             }
         });
+
+        LinearLayout journalsButton = (LinearLayout) findViewById(R.id.journalsButton);
+        journalsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new JournalFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+
+                setTitle("Journals");
+                previousWindow = "Journals";
+                hideBackButton();
+
+                addButton = (ImageButton) findViewById(R.id.add_button);
+                addButton.setVisibility(View.VISIBLE);
+            }
+        });
+
+        LinearLayout mapButton = (LinearLayout) findViewById(R.id.mapButton);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new MapsFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+
+                setTitle("Map");
+                previousWindow = "Map";
+                hideBackButton();
+
+                addButton = (ImageButton) findViewById(R.id.add_button);
+                addButton.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        popFromBackstack();
+        hideBackButton();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    public void showBackButton() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void hideBackButton() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
     }
 
     public List<Journal> getJournals() { return journals; }
@@ -191,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("journal").commit();
 
         addButton = (ImageButton) findViewById(R.id.add_button);
-        addButton.setVisibility(View.GONE);
+//        addButton.setVisibility(View.GONE);
         Log.i("FragmentAlertDialog", "Positive click!");
     }
 
@@ -201,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("event").commit();
 
         addButton = (ImageButton) findViewById(R.id.add_button);
-        addButton.setVisibility(View.GONE);
+//        addButton.setVisibility(View.GONE);
         Log.i("FragmentAlertDialog", "Negative click!");
     }
 
@@ -215,11 +295,8 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
-        mDrawerList.setItemChecked(1, true);
-        mDrawerList.setSelection(1);
-        setTitle(mNavigationDrawerItemTitles[1]);
-        mDrawerLayout.closeDrawer(mDrawerList);
-        previousWindow = mNavigationDrawerItemTitles[1];
+        setTitle("Map");
+        previousWindow = "Map";
     }
 
     public void popFromBackstack() {
@@ -236,6 +313,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("event").commit();
         setTitle(currentJournal.getTitle());
+        showBackButton();
     }
 
     public void inflateEventList() {
@@ -244,67 +322,12 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         transaction.replace(R.id.event_list_container, eventFragment).commit();
     }
 
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
 
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-        }
-
-    }
-
-    private void selectItem(int position) {
-
-        Fragment fragment = null;
-
-        // drop down menu items
-        switch (position) {
-            case 0:
-                fragment = new JournalFragment();
-                break;
-            case 1:
-                fragment = new MapsFragment();
-                break;
-
-            default:
-                break;
-        }
-
-        if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-
-            mDrawerList.setItemChecked(position, true);
-            mDrawerList.setSelection(position);
-            setTitle(mNavigationDrawerItemTitles[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
-            previousWindow = mNavigationDrawerItemTitles[position];
-
-        } else {
-            Log.e("MainActivity", "Error in creating fragment");
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
         getSupportActionBar().setTitle(mTitle);
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
     }
 
     void setupToolbar(){
@@ -313,11 +336,6 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
-    void setupDrawerToggle(){
-        mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,toolbar,R.string.app_name, R.string.app_name);
-        //This is necessary to change the icon of the Drawer Toggle upon state change.
-        mDrawerToggle.syncState();
-    }
 
     public Bitmap getMarkerBitmapFromView() {
 

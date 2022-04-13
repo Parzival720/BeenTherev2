@@ -77,7 +77,6 @@ public class EventFragment extends Fragment {
             recyclerView.setAdapter(new EventRecyclerViewAdapter(activity.getCurrentJournal().getEvents(), new ClickListener() {
                 @Override
                 public void onPositionClicked(int position) {
-                    Toast.makeText(view.getContext(), activity.getCurrentJournal().getEvents().get(position).getPrettyLocation(), Toast.LENGTH_SHORT).show();
                     LatLng newLocation = activity.getCurrentJournal().getEvents().get(position).getLocation();
                     activity.setCurrentLocation(newLocation);
                     activity.jumpToMap();
