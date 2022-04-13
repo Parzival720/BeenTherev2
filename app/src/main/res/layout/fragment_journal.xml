@@ -6,29 +6,77 @@
               android:layout_margin="12dp"
               android:orientation="vertical">
 
-    <LinearLayout android:layout_width="match_parent"
+    <RelativeLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:paddingBottom="12dp"
-                  android:orientation="horizontal"
+                  android:paddingBottom="6dp"
+                  android:orientation="vertical"
+                  android:id="@+id/journal_header"
                   android:background="@drawable/title_date">
 
-        <TextView
-                android:id="@+id/item_number"
-                android:hint="this is for demonstration"
-                android:layout_width="210dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/journal_title_container"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/journal_title"
+                android:hint="Sample"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="25dp"
                 android:textColor="@color/black"
+                android:layout_alignParentLeft="true"
                 android:layout_marginTop="7dp"
                 android:layout_marginLeft="10dp" />
 
-        <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="5dp"
-                  android:textColor="@color/black"
-                  android:text="start date - end date"/>
+            <RelativeLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/myImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/multiple" />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/journal_events"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/myImageView"
+                    android:layout_alignTop="@+id/myImageView"
+                    android:layout_alignRight="@+id/myImageView"
+                    android:layout_alignBottom="@+id/myImageView"
+                    android:layout_margin="1dp"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="2dp"
+                    android:text="1"
+                    android:textColor="#000000" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/journal_title_container"
+            android:orientation="horizontal">
+
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/black"
+                android:hint="Dates"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/journal_dates"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:orientation="horizontal"
@@ -39,9 +87,9 @@
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 app:srcCompat="@android:drawable/btn_star_big_on"
-                android:id="@+id/imageView"/>
+                android:id="@+id/journal_photo"/>
         <TextView
-            android:id="@+id/content"
+            android:id="@+id/journal_description"
             android:hint="this is where the description should go"
             android:lineSpacingMultiplier="1.5"
             android:textColor="@color/hint_color"

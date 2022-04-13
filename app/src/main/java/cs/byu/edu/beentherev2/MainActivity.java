@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
     private CharSequence mTitle;
     ActionBarDrawerToggle mDrawerToggle;
 
-    Button addButton;
+    ImageButton addButton;
 
     private List<Journal> journals;
     private Journal currentJournal;
@@ -70,12 +72,17 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         one.setStartDate(new GregorianCalendar(2020, Calendar.MAY, 11).getTime());
         one.setEndDate(new GregorianCalendar(2020, Calendar.MAY, 21).getTime());
         one.setDescription("I got to Ireland with my family and my best friends and it was amazing!");
+        one.setPhoto(R.drawable.moher);
 
         Event ireland1 = new Event();
         ireland1.setTitle("Cliffs of Moher");
         ireland1.setLocation(new LatLng(52.9720011201605, -9.430839508329006));
         ireland1.setCost(new Float(13.19));
+        ireland1.setStartDate(new GregorianCalendar(2020, Calendar.MAY, 17).getTime());
+        ireland1.setEndDate(new GregorianCalendar(2020, Calendar.MAY, 18).getTime());
         ireland1.setDescription("WOAH! I can't believe places like this exist outside of scenic documentaries");
+        ireland1.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.moher))));
+        ireland1.setTags(new ArrayList<String>(Arrays.asList("Hike", "Cliffs", "UK")));
         one.addEvent(ireland1);
         journals.add(one);
 
@@ -86,12 +93,16 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         two.setStartDate(new GregorianCalendar(2021, Calendar.AUGUST, 17).getTime());
         two.setEndDate(new GregorianCalendar(2021, Calendar.AUGUST, 27).getTime());
         two.setDescription("Alaska has some of the coolest scenery I've ever seen. I'm hoping we'll get to go back and do more soon");
+        two.setPhoto(R.drawable.alaska);
 
         Event alaska1 = new Event();
         alaska1.setTitle("Nat Shack");
         alaska1.setLocation(new LatLng(61.12746893931103, -146.34576811494122));
         alaska1.setCost(new Float(15.36));
+        alaska1.setStartDate(new GregorianCalendar(2021, Calendar.AUGUST, 17).getTime());
         alaska1.setDescription("Good fries. Better company. 10/10 would go again. 4 stars");
+        alaska1.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.nat_shack))));
+        alaska1.setTags(new ArrayList<String>(Arrays.asList("Food", "USA")));
         two.addEvent(alaska1);
         journals.add(two);
 
@@ -100,12 +111,16 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         three.setStartDate(new GregorianCalendar(2021, Calendar.OCTOBER, 8).getTime());
         three.setEndDate(new GregorianCalendar(2021, Calendar.OCTOBER, 11).getTime());
         three.setDescription("OMG the food in vegas was AMAZING can't wait to go back with the girls :))) ");
+        three.setPhoto(R.drawable.vegas);
 
         Event vegas1 = new Event();
         vegas1.setTitle("Eureka! Discover American Craft");
+        vegas1.setStartDate(new GregorianCalendar(2021, Calendar.OCTOBER, 8).getTime());
         vegas1.setLocation(new LatLng(36.168991532997886, -115.13967506349458));
-        vegas1.setCost(new Float(23.14));
-        vegas1.setDescription("Discover this cool brewery with friends. We got wasted");
+        vegas1.setCost(new Float(53.14));
+        vegas1.setDescription("Discovered this cool brewery that has massive burgers!! Need to bring dad");
+        vegas1.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.eureka))));
+        vegas1.setTags(new ArrayList<String>(Arrays.asList("Food", "USA", "Expensive")));
         three.addEvent(vegas1);
         journals.add(three);
 
@@ -134,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         setTitle(mNavigationDrawerItemTitles[0]);
         mDrawerLayout.closeDrawer(mDrawerList);
 
-        addButton = (Button) findViewById(R.id.add_button);
+        addButton = (ImageButton) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("journal").commit();
 
-        addButton = (Button) findViewById(R.id.add_button);
+        addButton = (ImageButton) findViewById(R.id.add_button);
         addButton.setVisibility(View.GONE);
         Log.i("FragmentAlertDialog", "Positive click!");
     }
@@ -165,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("event").commit();
 
-        addButton = (Button) findViewById(R.id.add_button);
+        addButton = (ImageButton) findViewById(R.id.add_button);
         addButton.setVisibility(View.GONE);
         Log.i("FragmentAlertDialog", "Negative click!");
     }
@@ -176,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
     }
 
     public void popFromBackstack() {
-        addButton = (Button) findViewById(R.id.add_button);
+        addButton = (ImageButton) findViewById(R.id.add_button);
         addButton.setVisibility(View.VISIBLE);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStackImmediate();

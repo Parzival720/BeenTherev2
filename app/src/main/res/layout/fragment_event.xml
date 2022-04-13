@@ -6,43 +6,117 @@
               android:layout_margin="12dp"
               android:orientation="vertical">
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:paddingBottom="12dp"
-                  android:orientation="horizontal"
-                  android:background="@drawable/title_date">
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:orientation="horizontal">
 
         <TextView
-                android:id="@+id/item_number"
-                android:hint="this is for demonstration"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:textColor="@color/black"
-                android:layout_marginTop="7dp"
-                android:layout_marginLeft="10dp" />
+            android:id="@+id/event_title"
+            android:hint="Sample"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="10dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal">
 
         <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="5dp"
-                  android:textColor="@color/black"
-                  android:text="start date - end date"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/black"
+            android:hint="Dates"
+            android:layout_marginRight="10dp"
+            android:id="@+id/event_dates"/>
 
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/rounded_photo">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:srcCompat="@android:drawable/btn_star_big_on"
+            android:id="@+id/eventPhoto"/>
+    </FrameLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/location" />
+
+        <TextView
+            android:id="@+id/event_location"
+            android:hint="Location"
+            android:lineSpacingMultiplier="1.5"
+            android:textColor="@color/hint_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:orientation="horizontal"
-                  android:background="@drawable/content"
                   android:padding="8dp">
 
-        <ImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                app:srcCompat="@android:drawable/btn_star_big_on"
-                android:id="@+id/imageView"/>
+
         <TextView
-            android:id="@+id/content"
+            android:id="@+id/event_description"
             android:hint="this is where the description should go"
+            android:lineSpacingMultiplier="1.5"
+            android:textColor="@color/hint_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/dollars" />
+
+        <TextView
+            android:id="@+id/event_cost"
+            android:hint="FREE"
+            android:lineSpacingMultiplier="1.5"
+            android:textColor="@color/hint_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/tag" />
+
+        <TextView
+            android:id="@+id/event_tags"
+            android:hint="Tags"
             android:lineSpacingMultiplier="1.5"
             android:textColor="@color/hint_color"
             android:layout_width="wrap_content"

@@ -1,25 +1,31 @@
 package cs.byu.edu.beentherev2.model;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
+import cs.byu.edu.beentherev2.R;
 import cs.byu.edu.beentherev2.model.Event;
 
 public class Journal {
     private String title;
-    private File photo;
+    private int photo;
     private String description;
     private Date startDate;
     private Date endDate;
     private ArrayList<Event> events;
 
+    private final String dateString = "dd MMMM yyyy";
+
     public Journal() {
         title = "";
-        photo = new File("");
+        photo = R.drawable.moher;
         description = "";
-        startDate = new Date();
-        endDate = new Date();
+        startDate = Calendar.getInstance().getTime();
+        endDate = Calendar.getInstance().getTime();
         events = new ArrayList<>();
     }
 
@@ -31,11 +37,11 @@ public class Journal {
         this.title = title;
     }
 
-    public File getPhoto() {
+    public int getPhoto() {
         return photo;
     }
 
-    public void setPhoto(File photo) {
+    public void setPhoto(int photo) {
         this.photo = photo;
     }
 
@@ -51,6 +57,11 @@ public class Journal {
         return startDate;
     }
 
+    public String getPrettyStartDate() {
+        DateFormat dateFormat = new SimpleDateFormat(dateString);
+        return dateFormat.format(startDate);
+    }
+
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
@@ -58,6 +69,12 @@ public class Journal {
     public Date getEndDate() {
         return endDate;
     }
+
+    public String getPrettyEndDate() {
+        DateFormat dateFormat = new SimpleDateFormat(dateString);
+        return dateFormat.format(endDate);
+    }
+
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;

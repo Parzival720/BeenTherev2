@@ -11,6 +11,6 @@
     android:paddingRight="16dp"
     android:paddingBottom="75dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".fragment.JournalFragment"
-    tools:listitem="@layout/fragment_journal"
+    tools:context=".fragment.EventFragment"
+    tools:listitem="@layout/fragment_event"
     android:clipToPadding="false"/>

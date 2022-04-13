@@ -5,8 +5,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import cs.byu.edu.beentherev2.R;
+import cs.byu.edu.beentherev2.model.Event;
 import cs.byu.edu.beentherev2.model.Journal;
 import cs.byu.edu.beentherev2.placeholder.PlaceholderContent.PlaceholderItem;
 import cs.byu.edu.beentherev2.databinding.FragmentJournalBinding;
@@ -35,8 +38,14 @@ public class JournalRecyclerViewAdapter extends RecyclerView.Adapter<JournalRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getTitle());
-        holder.mContentView.setText(mValues.get(position).getDescription());
+        holder.mTitleView.setText(mValues.get(position).getTitle());
+        holder.mDescriptionView.setText(mValues.get(position).getDescription());
+        String start = mValues.get(position).getPrettyStartDate();
+        String end = mValues.get(position).getPrettyEndDate();
+        holder.mDatesView.setText(start + " - " + end);
+        holder.mPhotoView.setImageResource(mValues.get(position).getPhoto());
+        List<Event> events = mValues.get(position).getEvents();
+        holder.mEventsView.setText(events.size()+"");
     }
 
     @Override
@@ -45,19 +54,25 @@ public class JournalRecyclerViewAdapter extends RecyclerView.Adapter<JournalRecy
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView mTitleView;
+        public final TextView mDescriptionView;
+        public final TextView mDatesView;
+        public final TextView mEventsView;
+        public final ImageView mPhotoView;
         public Journal mItem;
 
         public ViewHolder(FragmentJournalBinding binding) {
             super(binding.getRoot());
-            mIdView = binding.itemNumber;
-            mContentView = binding.content;
+            mTitleView = binding.journalTitle;
+            mDescriptionView = binding.journalDescription;
+            mDatesView = binding.journalDates;
+            mPhotoView = binding.journalPhoto;
+            mEventsView = binding.journalEvents;
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mTitleView.getText() + "'";
         }
     }
 
