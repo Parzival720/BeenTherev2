@@ -1,6 +1,7 @@
 package cs.byu.edu.beentherev2.placeholder;
 
 import android.view.View;
+import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -11,7 +12,10 @@ import cs.byu.edu.beentherev2.model.Journal;
 import cs.byu.edu.beentherev2.placeholder.PlaceholderContent.PlaceholderItem;
 import cs.byu.edu.beentherev2.databinding.FragmentJournalBinding;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.text.*;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
@@ -36,6 +40,9 @@ public class JournalRecyclerViewAdapter extends RecyclerView.Adapter<JournalRecy
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getTitle());
+        SimpleDateFormat format = new SimpleDateFormat("MMM d yyyy");
+        holder.mStartDate.setText(format.format(mValues.get(position).getStartDate()));
+        holder.mEndDate.setText(format.format(mValues.get(position).getEndDate()));
         holder.mContentView.setText(mValues.get(position).getDescription());
     }
 
@@ -47,12 +54,18 @@ public class JournalRecyclerViewAdapter extends RecyclerView.Adapter<JournalRecy
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
+        public final TextView mStartDate;
+        public final TextView mEndDate;
+        public final ImageView mImage;
         public Journal mItem;
 
         public ViewHolder(FragmentJournalBinding binding) {
             super(binding.getRoot());
             mIdView = binding.itemNumber;
             mContentView = binding.content;
+            mStartDate = binding.startDate;
+            mEndDate = binding.endDate;
+            mImage = binding.journalImage;
         }
 
         @Override

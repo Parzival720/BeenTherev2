@@ -20,4 +20,5 @@
 
     <!--Other theme colors-->
     <color name="light_blue">#BBE9FB</color>
+    <color name="light_gray">#F0F0F0</color>
 </resources>
