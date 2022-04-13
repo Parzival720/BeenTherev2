@@ -16,8 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
+import cs.byu.edu.beentherev2.model.Event;
 import cs.byu.edu.beentherev2.placeholder.ClickListener;
 import cs.byu.edu.beentherev2.placeholder.EventRecyclerViewAdapter;
 import cs.byu.edu.beentherev2.placeholder.RecyclerItemClickListener;
@@ -74,7 +82,19 @@ public class EventFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new EventRecyclerViewAdapter(activity.getCurrentJournal().getEvents(), new ClickListener() {
+            List<Event> events = activity.getCurrentJournal().getEvents();
+            if (events.size() == 0) {
+                Event none = new Event();
+                none.setTitle("Journal Created");
+                none.setStartDate(new Date());
+                none.setLocation(new LatLng(40.24688, -111.64920));
+                none.setCost(new Float(0));
+                none.setDescription("No events saved yet. Go make some memories!");
+                none.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.loading))));
+                none.setTags(new ArrayList<String>(Arrays.asList("Empty", "Zip", "Nada")));
+                events = Arrays.asList(none);
+            }
+            recyclerView.setAdapter(new EventRecyclerViewAdapter(events, new ClickListener() {
                 @Override
                 public void onPositionClicked(int position) {
                     LatLng newLocation = activity.getCurrentJournal().getEvents().get(position).getLocation();
