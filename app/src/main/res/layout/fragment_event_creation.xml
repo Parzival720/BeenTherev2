@@ -38,7 +38,7 @@
             android:text="@string/location"
             android:layout_marginLeft="20dp"/>
 
-    <EditText android:layout_width="match_parent"
+    <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:hint="@string/location_placeholder"
               android:textColorHint="@color/theme_blue"
@@ -59,19 +59,31 @@
             android:text="@string/photos"
             android:layout_marginLeft="20dp"/>
 
-    <EditText android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:hint="@string/select_photos"
-              android:textColorHint="@color/hint_color"
-              android:textColor="@color/black"
-              android:background="@drawable/rounded_edittext"
-              android:padding="6dp"
-              android:layout_marginLeft="20dp"
-              android:layout_marginRight="20dp"
-              android:layout_marginBottom="10dp"
-              android:layout_marginTop="3dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/select_photos"
+            android:textColorHint="@color/hint_color"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edittext"
+            android:padding="6dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="3dp"
 
-              android:id="@+id/create_event_photos"/>
+            android:id="@+id/create_event_photos"/>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:src="@drawable/crepe"></ImageView>
+
+    </LinearLayout>
+
+
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -88,7 +100,7 @@
                       android:layout_height="wrap_content"
                       android:orientation="horizontal">
 
-            <EditText android:layout_width="139dp"
+            <TextView android:layout_width="139dp"
                       android:layout_height="wrap_content"
                       android:hint="@string/date_placeholder"
                       android:textColorHint="@color/hint_color"
@@ -107,7 +119,7 @@
                       android:text="@string/date_to_date"
                       android:textColor="@color/black"/>
 
-            <EditText android:layout_width="139dp"
+            <TextView android:layout_width="139dp"
                       android:layout_height="wrap_content"
                       android:hint="@string/date_placeholder"
                       android:textColorHint="@color/hint_color"

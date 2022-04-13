@@ -1,5 +1,7 @@
 package cs.byu.edu.beentherev2.fragment;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -18,9 +20,12 @@ import cs.byu.edu.beentherev2.model.Event;
 import cs.byu.edu.beentherev2.model.Journal;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -38,6 +43,16 @@ public class EventCreationFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int startYear, startMonth, startDay;
+    private int endYear, endMonth, endDay;
+    private boolean startDateActive;
+    private boolean endDateActive;
+
+    private Date startDate;
+    private Date endDate;
 
     public EventCreationFragment() {
         // Required empty public constructor
@@ -64,11 +79,53 @@ public class EventCreationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        calendar = Calendar.getInstance();
+        startYear = calendar.get(Calendar.YEAR);
+        startMonth = calendar.get(Calendar.MONTH);
+        startDay = calendar.get(Calendar.DAY_OF_MONTH);
+        endYear = calendar.get(Calendar.YEAR);
+        endMonth = calendar.get(Calendar.MONTH);
+        endDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        startDateActive = false;
+        endDateActive = false;
+
+        startDate = new Date();
+        endDate = new Date();
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    if (startDateActive) {
+                        startDate = new GregorianCalendar(arg1, arg2, arg3).getTime();
+                        startDateActive = false;
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        TextView startDateView = mainActivity.findViewById(R.id.create_event_startdate);
+                        DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+                        startDateView.setText(dateFormat.format(startDate));
+                    } else if (endDateActive) {
+                        endDate = new GregorianCalendar(arg1, arg2, arg3).getTime();
+                        endDateActive = false;
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        TextView endDateView = mainActivity.findViewById(R.id.create_event_enddate);
+                        DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+                        endDateView.setText(dateFormat.format(endDate));
+                    }
+                }
+            };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +134,29 @@ public class EventCreationFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event_creation, container, false);
+
+        TextView startDatePicker = (TextView) view.findViewById(R.id.create_event_startdate);
+        startDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startDateActive = true;
+                Dialog dialog = new DatePickerDialog(getContext(),
+                        myDateListener, startYear, startMonth, startDay);
+                dialog.show();
+            }
+        });
+
+        TextView endDatePicker = (TextView) view.findViewById(R.id.create_event_enddate);
+        endDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                endDateActive = true;
+                Dialog dialog = new DatePickerDialog(getContext(),
+                        myDateListener, endYear, endMonth, endDay);
+                dialog.show();
+            }
+        });
+
 
         Button cancelButton = (Button)view.findViewById(R.id.create_event_cancel);
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -101,9 +181,6 @@ public class EventCreationFragment extends Fragment {
         EditText description = (EditText) view.findViewById(R.id.create_event_description);
         EditText cost = (EditText) view.findViewById(R.id.create_event_cost);
 
-        EditText startDate = (EditText) view.findViewById(R.id.create_event_startdate);
-        EditText endDate = (EditText) view.findViewById(R.id.create_event_enddate);
-
         Button saveButton = (Button)view.findViewById(R.id.create_event_submit);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,20 +191,14 @@ public class EventCreationFragment extends Fragment {
                 event.setTitle(title.getText().toString());
                 event.setDescription(description.getText().toString());
 
-                String beginDate = startDate.getText().toString();
-                String stopDate = endDate.getText().toString();
                 String costString = cost.getText().toString();
 
                 //Get locations in the form of a LatLng
                 LatLng location = null;
 
-                Date start = null;
-                Date end = null;
                 Float eventCost = new Float(0);
                 Boolean success = true;
                 try {
-                    start = new SimpleDateFormat("dd/MM/yyyy").parse(beginDate);
-                    end = new SimpleDateFormat("dd/MM/yyyy").parse(stopDate);
                     eventCost = Float.parseFloat(costString);
                 }
                 catch (NumberFormatException e) {
@@ -135,15 +206,11 @@ public class EventCreationFragment extends Fragment {
                     Toast.makeText(context, "Invalid cost offered, unable to add journal", Toast.LENGTH_LONG).show();
                     success = false;
                 }
-                catch (Exception e) {
-                    System.out.println(e);
-                    Toast.makeText(context, "Invalid date offered, unable to add journal", Toast.LENGTH_LONG).show();
-                    success = false;
-                }
+
 
                 if (success) {
-                    event.setStartDate(start);
-                    event.setEndDate(end);
+                    event.setStartDate(startDate);
+                    event.setEndDate(endDate);
                     event.setCost(eventCost);
                     //find way to parse from command line?
                     if (location == null) {

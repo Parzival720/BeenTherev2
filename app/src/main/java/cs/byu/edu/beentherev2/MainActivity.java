@@ -50,7 +50,7 @@ import cs.byu.edu.beentherev2.model.Event;
 import cs.byu.edu.beentherev2.model.Journal;
 import cs.byu.edu.beentherev2.placeholder.JournalRecyclerViewAdapter;
 
-public class MainActivity extends AppCompatActivity implements JournalRecyclerViewAdapter.onJournalListener {
+public class MainActivity extends AppCompatActivity implements JournalRecyclerViewAdapter.onJournalListener  {
 
     Toolbar toolbar;
     private CharSequence mTitle;
@@ -291,6 +291,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
     }
 
     public void jumpToMap() {
+        hideBackButton();
         Fragment fragment = new MapsFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();

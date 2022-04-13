@@ -22,7 +22,7 @@ public class Journal {
 
     public Journal() {
         title = "";
-        photo = R.drawable.moher;
+        photo = R.drawable.crepe;
         description = "";
         startDate = Calendar.getInstance().getTime();
         endDate = Calendar.getInstance().getTime();

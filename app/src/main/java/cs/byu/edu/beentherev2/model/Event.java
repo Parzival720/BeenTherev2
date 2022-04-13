@@ -8,8 +8,11 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import cs.byu.edu.beentherev2.R;
 
 public class Event {
     private String title;
@@ -26,7 +29,7 @@ public class Event {
     public Event() {
         title = "";
         location = new LatLng(50, 50);
-        photos = new ArrayList<Integer>();
+        photos = new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.crepe)));
         description = "";
         startDate = new Date();
         endDate = null;
