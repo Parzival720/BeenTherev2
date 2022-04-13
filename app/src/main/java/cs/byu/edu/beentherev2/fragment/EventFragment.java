@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.R;
 import cs.byu.edu.beentherev2.placeholder.EventRecyclerViewAdapter;
+import cs.byu.edu.beentherev2.placeholder.RecyclerItemClickListener;
 
 /**
  * A fragment representing a list of Items.
@@ -54,7 +56,9 @@ public class EventFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_journal_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_event_list, container, false);
+
+        MainActivity activity = (MainActivity) getActivity();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -65,7 +69,6 @@ public class EventFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            MainActivity activity = (MainActivity) getActivity();
             recyclerView.setAdapter(new EventRecyclerViewAdapter(activity.getCurrentJournal().getEvents()));
         }
         return view;

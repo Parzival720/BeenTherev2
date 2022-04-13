@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import cs.byu.edu.beentherev2.MainActivity;
 import cs.byu.edu.beentherev2.placeholder.JournalRecyclerViewAdapter;
 import cs.byu.edu.beentherev2.R;
+import cs.byu.edu.beentherev2.placeholder.RecyclerItemClickListener;
 
 /**
  * A fragment representing a list of Items.
@@ -70,6 +71,17 @@ public class JournalFragment extends Fragment {
 
             MainActivity activity = (MainActivity) getActivity();
             recyclerView.setAdapter(new JournalRecyclerViewAdapter(activity.getJournals()));
+            recyclerView.addOnItemTouchListener(
+                    new RecyclerItemClickListener(context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                        @Override public void onItemClick(View view, int position) {
+                            activity.onJournalClick(position);
+                        }
+
+                        @Override public void onLongItemClick(View view, int position) {
+                            // do whatever
+                        }
+                    })
+            );
         }
         return view;
     }

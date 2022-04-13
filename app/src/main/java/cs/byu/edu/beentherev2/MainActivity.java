@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,8 +26,10 @@ import java.util.List;
 import com.google.android.gms.maps.model.LatLng;
 import cs.byu.edu.beentherev2.fragment.AddDialog;
 import cs.byu.edu.beentherev2.fragment.EventCreationFragment;
+import cs.byu.edu.beentherev2.fragment.EventFragment;
 import cs.byu.edu.beentherev2.fragment.JournalFragment;
 import cs.byu.edu.beentherev2.fragment.JournalCreationFragment;
+import cs.byu.edu.beentherev2.fragment.JournalInsideFragment;
 import cs.byu.edu.beentherev2.fragment.MapsFragment;
 import cs.byu.edu.beentherev2.model.DataModel;
 import cs.byu.edu.beentherev2.model.Event;
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
 
     private List<Journal> journals;
     private Journal currentJournal;
+    private String previousWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         ireland1.setTitle("Cliffs of Moher");
         ireland1.setLocation(new LatLng(52.9720011201605, -9.430839508329006));
         ireland1.setCost(new Float(13.19));
+        ireland1.setDescription("WOAH! I can't believe places like this exist outside of scenic documentaries");
         one.addEvent(ireland1);
         journals.add(one);
 
@@ -86,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         alaska1.setTitle("Nat Shack");
         alaska1.setLocation(new LatLng(61.12746893931103, -146.34576811494122));
         alaska1.setCost(new Float(15.36));
+        alaska1.setDescription("Good fries. Better company. 10/10 would go again. 4 stars");
         two.addEvent(alaska1);
         journals.add(two);
 
@@ -99,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         vegas1.setTitle("Eureka! Discover American Craft");
         vegas1.setLocation(new LatLng(36.168991532997886, -115.13967506349458));
         vegas1.setCost(new Float(23.14));
+        vegas1.setDescription("Discover this cool brewery with friends. We got wasted");
         three.addEvent(vegas1);
         journals.add(three);
 
@@ -121,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, new JournalFragment()).commit();
 
+        previousWindow = "Journals";
         mDrawerList.setItemChecked(0, true);
         mDrawerList.setSelection(0);
         setTitle(mNavigationDrawerItemTitles[0]);
@@ -172,12 +180,21 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         addButton.setVisibility(View.VISIBLE);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.popBackStackImmediate();
+        setTitle(previousWindow);
     }
 
-    @Override
     public void onJournalClick(int position) {
-        Journal clickedJournal = journals.get(position);
-        Toast.makeText(this, String.format("clicked on journal titled %s", clickedJournal.getTitle()), Toast.LENGTH_LONG).show();
+        currentJournal = journals.get(position);
+        Fragment fragment = new JournalInsideFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).addToBackStack("event").commit();
+        setTitle(currentJournal.getTitle());
+    }
+
+    public void inflateEventList() {
+        Fragment eventFragment = new EventFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.event_list_container, eventFragment).commit();
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -214,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
             mDrawerList.setSelection(position);
             setTitle(mNavigationDrawerItemTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
+            previousWindow = mNavigationDrawerItemTitles[position];
 
         } else {
             Log.e("MainActivity", "Error in creating fragment");
