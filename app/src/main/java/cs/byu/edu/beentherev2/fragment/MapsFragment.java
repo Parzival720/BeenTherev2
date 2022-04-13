@@ -1,6 +1,7 @@
 package cs.byu.edu.beentherev2.fragment;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -35,6 +36,9 @@ import cs.byu.edu.beentherev2.model.Journal;
 public class MapsFragment extends Fragment {
 
     GoogleMap mMap;
+
+    LatLng marb = new LatLng(40.24688, -111.64920);
+    LatLng santaMonica = new LatLng(34.009333, -118.498054);
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -77,7 +81,7 @@ public class MapsFragment extends Fragment {
 
             // adding a marker on map with image from  drawable
             mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(40.24688, -111.64920))
+                    .position(santaMonica)
                     .icon(BitmapDescriptorFactory.fromBitmap(mainActivity.getMarkerBitmapFromView())));
         }
     };
@@ -102,8 +106,10 @@ public class MapsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 CameraUpdate cameraUpdate =
-                        CameraUpdateFactory.newLatLngZoom(new LatLng(40.24688, -111.64920), 15);
+                        CameraUpdateFactory.newLatLngZoom(santaMonica, 15);
                 mMap.animateCamera(cameraUpdate);
+                MainActivity activity = (MainActivity) getActivity();
+                activity.setCurrentLocation(santaMonica);
             }
         });
 

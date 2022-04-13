@@ -79,7 +79,7 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="60dp"
-            android:src="@drawable/crepe"></ImageView>
+            android:src="@drawable/scoops"></ImageView>
 
     </LinearLayout>
 

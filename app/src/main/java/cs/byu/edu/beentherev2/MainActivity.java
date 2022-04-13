@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         ireland1.setDescription("WOAH! I can't believe places like this exist outside of scenic documentaries");
         ireland1.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.moher))));
         ireland1.setTags(new ArrayList<String>(Arrays.asList("Hike", "Cliffs", "UK")));
-        one.addEvent(ireland1);
 
         Event ireland2 = new Event();
         ireland2.setTitle("Blarney Stone");
@@ -102,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         ireland2.setDescription("Kissed the stone. Probably got a couple rare diseases");
         ireland2.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.blarney))));
         ireland2.setTags(new ArrayList<String>(Arrays.asList("Historic", "UK")));
-        one.addEvent(ireland2);
 
         Event ireland3 = new Event();
         ireland3.setTitle("The Old Quarter Pub");
@@ -112,9 +110,10 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         ireland3.setDescription("Drank apple juice in limerick with some dirty irishmen. Well their poems were dirty ;)");
         ireland3.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.pub))));
         ireland3.setTags(new ArrayList<String>(Arrays.asList("Bar", "Food", "UK")));
-        one.addEvent(ireland3);
 
-        journals.add(one);
+        one.addEvent(ireland3);
+        one.addEvent(ireland2);
+        one.addEvent(ireland1);
 
         currentJournal = one;
 
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         alaska1.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.nat_shack))));
         alaska1.setTags(new ArrayList<String>(Arrays.asList("Food", "USA")));
         two.addEvent(alaska1);
-        journals.add(two);
+
 
         Journal three = new Journal();
         three.setTitle("Las Vegas");
@@ -151,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         vegas1.setDescription("Discovered this cool brewery that has massive burgers!! Need to bring dad");
         vegas1.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.eureka))));
         vegas1.setTags(new ArrayList<String>(Arrays.asList("Food", "USA", "Expensive")));
-        three.addEvent(vegas1);
+
 
         Event vegas2 = new Event();
         vegas2.setTitle("Helicopter Night Tour");
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         vegas2.setDescription("Was a little pricey but the view of the strip from above was incredible!");
         vegas2.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.vegas_helicopter))));
         vegas2.setTags(new ArrayList<String>(Arrays.asList("Tour", "USA", "Expensive", "Risk")));
-        three.addEvent(vegas2);
+
 
         Event vegas3 = new Event();
         vegas3.setTitle("48th and Crepe");
@@ -171,9 +170,14 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
         vegas3.setDescription("Cute crepe place in the New York Casino. Fun but probably won't go back");
         vegas3.setPhotos(new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.crepe))));
         vegas3.setTags(new ArrayList<String>(Arrays.asList("Food", "USA")));
+
         three.addEvent(vegas3);
+        three.addEvent(vegas2);
+        three.addEvent(vegas1);
 
         journals.add(three);
+        journals.add(two);
+        journals.add(one);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -255,7 +259,7 @@ public class MainActivity extends AppCompatActivity implements JournalRecyclerVi
 
     public List<Journal> getJournals() { return journals; }
 
-    public void addJournal(Journal journal) { journals.add(journal); }
+    public void addJournal(Journal journal) { journals.add(0, journal); }
 
     public Journal getCurrentJournal() { return currentJournal; }
 

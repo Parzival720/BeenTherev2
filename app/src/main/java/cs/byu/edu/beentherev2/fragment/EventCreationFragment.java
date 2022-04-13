@@ -3,9 +3,13 @@ package cs.byu.edu.beentherev2.fragment;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.*;
+
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -127,6 +131,7 @@ public class EventCreationFragment extends Fragment {
                 }
             };
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -176,6 +181,17 @@ public class EventCreationFragment extends Fragment {
         Spinner spinner = (Spinner) view.findViewById(R.id.create_event_journal_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, strings);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                ((TextView)parentView.getChildAt(0)).setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         EditText title = (EditText) view.findViewById(R.id.create_event_title);
         EditText description = (EditText) view.findViewById(R.id.create_event_description);
@@ -215,7 +231,9 @@ public class EventCreationFragment extends Fragment {
                     //find way to parse from command line?
                     if (location == null) {
                         //set location to Provo (the Marb) if there is no location
-                        location = new LatLng(40.24688, -111.64920);
+                        LatLng santaMonica = new LatLng(34.009333, -118.498054);
+                        LatLng marb = new LatLng(40.24688, -111.64920);
+                        location = santaMonica;
                     }
                     event.setLocation(location);
 

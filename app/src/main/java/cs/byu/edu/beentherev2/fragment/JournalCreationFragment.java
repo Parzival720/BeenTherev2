@@ -195,6 +195,7 @@ public class JournalCreationFragment extends Fragment {
 
                 journal.setStartDate(startDate);
                 journal.setEndDate(endDate);
+                Toast.makeText(context, String.format("Successfully added %s", journal.getTitle()), Toast.LENGTH_LONG).show();
                 mainActivity.addJournal(journal);
                 mainActivity.popFromBackstack();
             }

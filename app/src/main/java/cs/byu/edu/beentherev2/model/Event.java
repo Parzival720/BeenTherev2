@@ -29,12 +29,12 @@ public class Event {
     public Event() {
         title = "";
         location = new LatLng(50, 50);
-        photos = new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.crepe)));
+        photos = new ArrayList<Integer>(Arrays.asList(new Integer(R.drawable.scoops)));
         description = "";
         startDate = new Date();
         endDate = null;
         cost = 0f;
-        tags = new ArrayList<>();
+        tags = new ArrayList<>(Arrays.asList("Ice cream"));
     }
 
     public String getTitle() {
